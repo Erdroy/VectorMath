@@ -15,6 +15,13 @@ protected:
     using Components<T, 4>::components;
 
 public:
+    /* Public usings */
+    using Components<T, 4>::x;
+    using Components<T, 4>::y;
+    using Components<T, 4>::z;
+    using Components<T, 4>::w;
+
+public:
     /* Constructors */
     explicit Vector4Base(T value)
     {

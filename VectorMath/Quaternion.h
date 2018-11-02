@@ -14,6 +14,13 @@ protected:
     using Components<float, 4>::components;
 
 public:
+    /* Public usings */
+    using Components<float, 4>::x;
+    using Components<float, 4>::y;
+    using Components<float, 4>::z;
+    using Components<float, 4>::w;
+
+public:
     /* Constructors */
     Quaternion(const float x, const float y, const float z, const float w)
     {

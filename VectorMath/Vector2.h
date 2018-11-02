@@ -11,8 +11,13 @@ template<typename T>
 struct Vector2Base : VectorBase<T, 2>
 {
 protected:
-    /* Protected members */
+    /* Protected usings */
     using Components<T, 2>::components;
+
+public:
+    /* Public usings */
+    using Components<T, 2>::x;
+    using Components<T, 2>::y;
 
 public:
     /* Constructors */
