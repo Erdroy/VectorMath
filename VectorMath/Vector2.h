@@ -46,6 +46,23 @@ public:
     }
 
 public:
+    /* Public members */
+    void Negate();
+    void Normalize();
+
+    T Dot(const Vector2Base<T>& a) const;
+    T Length() const;
+    T LengthSquared() const;
+
+public:
+    /* Public static members */
+    static Vector2Base<T> Normalize(const Vector2Base<T>& a);
+    static Vector2Base<T> Negate(const Vector2Base<T>& a);
+    static T Dot(const Vector2Base<T>& a, const Vector2Base<T>& b);
+    static T Length(const Vector2Base<T>& a);
+    static T LengthSquared(const Vector2Base<T>& a);
+
+public:
     /* Operators */
     void operator+=(const Vector2Base<T>& other);
     void operator-=(const Vector2Base<T>& other);
@@ -117,6 +134,74 @@ const Vector2Base<T> Vector2Base<T>::UnitX = Vector2Base<T>(1.0f, 0.0f);
 
 template<typename T>
 const Vector2Base<T> Vector2Base<T>::UnitY = Vector2Base<T>(0.0f, 1.0f);
+
+template <typename T>
+void Vector2Base<T>::Negate()
+{
+    x = -x;
+    y = -y;
+}
+
+template <typename T>
+void Vector2Base<T>::Normalize()
+{
+    T invLength = T(1.0) / Length();
+
+    x *= invLength;
+    y *= invLength;
+}
+
+template <typename T>
+T Vector2Base<T>::Dot(const Vector2Base<T>& a) const
+{
+    return (x * a.x) + (y * a.y);
+}
+
+template <typename T>
+T Vector2Base<T>::Length() const
+{
+    return std::sqrt(LengthSquared());
+}
+
+template <typename T>
+T Vector2Base<T>::LengthSquared() const
+{
+    return (x * x) + (y * y);
+}
+
+template <typename T>
+Vector2Base<T> Vector2Base<T>::Normalize(const Vector2Base<T>& a)
+{
+    Vector2Base<T> result = a;
+    result.Normalize();
+    return result;
+}
+
+template <typename T>
+Vector2Base<T> Vector2Base<T>::Negate(const Vector2Base<T>& a)
+{
+    Vector2Base<T> result = a;
+    result.Negate();
+    return result;
+}
+
+template <typename T>
+T Vector2Base<T>::Dot(const Vector2Base<T>& a, const Vector2Base<T>& b)
+{
+    return a.Dot(b);
+}
+
+template <typename T>
+T Vector2Base<T>::Length(const Vector2Base<T>& a)
+{
+    return a.Length();
+}
+
+template <typename T>
+T Vector2Base<T>::LengthSquared(const Vector2Base<T>& a)
+{
+    return a.LengthSquared();
+}
 
 template <typename T>
 void Vector2Base<T>::operator+=(const Vector2Base<T>& other)

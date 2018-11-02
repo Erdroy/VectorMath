@@ -101,6 +101,11 @@ namespace VectorMathTests
             Assert::IsTrue(Vector2(3.0f) >= Vector2(2.0f));
         }
 
+        TEST_METHOD(Vector2Members)
+        {
+            Assert::IsTrue(Vector2(1.0f, 1.0f).Length() - 1.0f < 0.001f);
+        }
+
         TEST_METHOD(Vector3Operators)
         {
             Assert::IsTrue(Vector3(1.0f) + Vector3(2.0f) == Vector3(3.0f));
