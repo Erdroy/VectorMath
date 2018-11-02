@@ -17,14 +17,6 @@ using Vector2d = Vector2Base<double>;
 using Vector3d = Vector3Base<double>;
 using Vector4d = Vector4Base<double>;
 
-using Vector2i = Vector2Base<int32_t>;
-using Vector3i = Vector3Base<int32_t>;
-using Vector4i = Vector4Base<int32_t>;
-
-using Vector2i64 = Vector2Base<int64_t>;
-using Vector3i64 = Vector3Base<int64_t>;
-using Vector4i64 = Vector4Base<int64_t>;
-
 #ifndef MATH_DEFAULT_DOUBLE_PRECISION
 using Vector2 = Vector2f;
 using Vector3 = Vector3f;
