@@ -11,15 +11,33 @@ template<typename T>
 struct Vector4Base : VectorBase<T, 4>
 {
 protected:
-    /* Protected members */
+    /* Protected usings */
     using Components<T, 4>::components;
-
-public:
-    /* Public usings */
+#if USE_UPPERCASE_COMPONENTS
     using Components<T, 4>::x;
     using Components<T, 4>::y;
     using Components<T, 4>::z;
     using Components<T, 4>::w;
+#else
+    using Components<T, 4>::X;
+    using Components<T, 4>::Y;
+    using Components<T, 4>::Z;
+    using Components<T, 4>::W;
+#endif
+
+public:
+    /* Public usings */
+#if USE_UPPERCASE_COMPONENTS
+    using Components<T, 4>::X;
+    using Components<T, 4>::Y;
+    using Components<T, 4>::Z;
+    using Components<T, 4>::W;
+#else
+    using Components<T, 4>::x;
+    using Components<T, 4>::y;
+    using Components<T, 4>::z;
+    using Components<T, 4>::w;
+#endif
 
 public:
     /* Constructors */

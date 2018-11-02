@@ -25,6 +25,12 @@ template <typename Type> struct Components<Type, 2>
             Type y;
         };
 
+        struct
+        {
+            Type X;
+            Type Y;
+        };
+
         Type components[2];
     };
 };
@@ -38,6 +44,13 @@ template <typename Type> struct Components<Type, 3>
             Type x;
             Type y;
             Type z;
+        };
+
+        struct
+        {
+            Type X;
+            Type Y;
+            Type Z;
         };
 
         Type components[3];
@@ -54,6 +67,14 @@ template <typename Type> struct Components<Type, 4>
             Type y;
             Type z;
             Type w;
+        };
+
+        struct
+        {
+            Type X;
+            Type Y;
+            Type Z;
+            Type W;
         };
 
         Type components[4];
