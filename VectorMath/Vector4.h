@@ -122,40 +122,40 @@ public:
 };
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Up = Vector4Base<T>(0.0f, 1.0, 0.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::Up = Vector4Base<T>(0, 1.0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Down = Vector4Base<T>(0.0f, -1.0f, 0.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::Down = Vector4Base<T>(0, -1, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Left = Vector4Base<T>(-1.0f, 0.0f, 0.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::Left = Vector4Base<T>(-1, 0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Right = Vector4Base<T>(1.0f, 0.0f, 0.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::Right = Vector4Base<T>(1, 0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Forward = Vector4Base<T>(-1.0f, 0.0f, 1.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::Forward = Vector4Base<T>(-1, 0, 1, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Back = Vector4Base<T>(1.0f, 0.0f, -1.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::Back = Vector4Base<T>(1, 0, -1, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::One = Vector4Base<T>(1.0f);
+const Vector4Base<T> Vector4Base<T>::One = Vector4Base<T>(1);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Zero = Vector4Base<T>(0.0f);
+const Vector4Base<T> Vector4Base<T>::Zero = Vector4Base<T>(0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::UnitX = Vector4Base<T>(1.0f, 0.0f, 0.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::UnitX = Vector4Base<T>(1, 0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::UnitY = Vector4Base<T>(0.0f, 1.0f, 0.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::UnitY = Vector4Base<T>(0, 1, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::UnitZ = Vector4Base<T>(0.0f, 0.0f, 1.0f, 0.0f);
+const Vector4Base<T> Vector4Base<T>::UnitZ = Vector4Base<T>(0, 0, 1, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::UnitW = Vector4Base<T>(0.0f, 0.0f, 0.0f, 1.0f);
+const Vector4Base<T> Vector4Base<T>::UnitW = Vector4Base<T>(0, 0, 0, 1);
 
 template <typename T>
 void Vector4Base<T>::operator+=(const Vector4Base<T>& other)

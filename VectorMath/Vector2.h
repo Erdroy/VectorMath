@@ -112,28 +112,28 @@ public:
 };
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Up = Vector2Base<T>(0.0f, 1.0f);
+const Vector2Base<T> Vector2Base<T>::Up = Vector2Base<T>(0, 1);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Down = Vector2Base<T>(0.0f, -1.0f);
+const Vector2Base<T> Vector2Base<T>::Down = Vector2Base<T>(0, -1);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Left = Vector2Base<T>(-1.0f, 0.0f);
+const Vector2Base<T> Vector2Base<T>::Left = Vector2Base<T>(-1, 0);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Right = Vector2Base<T>(1.0f, 0.0f);
+const Vector2Base<T> Vector2Base<T>::Right = Vector2Base<T>(1, 0);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::One = Vector2Base<T>(1.0f);
+const Vector2Base<T> Vector2Base<T>::One = Vector2Base<T>(1);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Zero = Vector2Base<T>(0.0f);
+const Vector2Base<T> Vector2Base<T>::Zero = Vector2Base<T>(0);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::UnitX = Vector2Base<T>(1.0f, 0.0f);
+const Vector2Base<T> Vector2Base<T>::UnitX = Vector2Base<T>(1, 0);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::UnitY = Vector2Base<T>(0.0f, 1.0f);
+const Vector2Base<T> Vector2Base<T>::UnitY = Vector2Base<T>(0, 1);
 
 template <typename T>
 void Vector2Base<T>::Negate()
@@ -145,7 +145,7 @@ void Vector2Base<T>::Negate()
 template <typename T>
 void Vector2Base<T>::Normalize()
 {
-    T invLength = T(1.0) / Length();
+    T invLength = T(1) / Length();
 
     x *= invLength;
     y *= invLength;
