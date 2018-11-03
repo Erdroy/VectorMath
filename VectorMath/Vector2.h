@@ -66,9 +66,7 @@ public:
     static Vector2Base<T> Negate(const Vector2Base<T>& a);
     static Vector2Base<T> Abs(const Vector2Base<T>& a);
     static Vector2Base<T> Lerp(const Vector2Base<T>& from, const Vector2Base<T>& to, T amount);
-
-    // TODO: Transform - https://github.com/sharpdx/SharpDX/blob/master/Source/SharpDX.Mathematics/Vector2.cs#L983
-    //static Vector2Base<T> Transform(const Vector2Base<T>& a, const Quaternion& rotation);
+    static Vector2Base<T> Transform(const Vector2Base<T>& a, const Quaternion& rotation);
 
     static T Dot(const Vector2Base<T>& a, const Vector2Base<T>& b);
     static T Length(const Vector2Base<T>& a);
@@ -218,18 +216,6 @@ T Vector2Base<T>::Distance(const Vector2Base<T>& a) const
 }
 
 template <typename T>
-bool Vector2Base<T>::IsNormalized(const Vector2Base<T>& a)
-{
-    return Math::IsOne(a.LengthSquared());
-}
-
-template <typename T>
-bool Vector2Base<T>::IsZero(const Vector2Base<T>& a)
-{
-    return a.x == 0 && a.y == 0;
-}
-
-template <typename T>
 Vector2Base<T> Vector2Base<T>::Normalize(const Vector2Base<T>& a)
 {
     Vector2Base<T> result = a;
@@ -261,6 +247,24 @@ Vector2Base<T> Vector2Base<T>::Lerp(const Vector2Base<T>& from, const Vector2Bas
 }
 
 template <typename T>
+Vector2Base<T> Vector2Base<T>::Transform(const Vector2Base<T>& a, const Quaternion& rotation)
+{
+    const auto x = T(rotation.x + rotation.x);
+    const auto y = T(rotation.y + rotation.y);
+    const auto z = T(rotation.z + rotation.z);
+    const auto wz = T(rotation.w * z);
+    const auto xx = T(rotation.x * x);
+    const auto xy = T(rotation.x * y);
+    const auto yy = T(rotation.y * y);
+    const auto zz = T(rotation.z * z);
+
+    return Vector2Base<T>(
+        (a.x * (T(1) - yy - zz)) + (a.y * (xy - wz)), 
+        (a.x * (xy + wz)) + (a.y * (T(1) - xx - zz))
+    );
+}
+
+template <typename T>
 T Vector2Base<T>::Dot(const Vector2Base<T>& a, const Vector2Base<T>& b)
 {
     return a.Dot(b);
@@ -288,6 +292,18 @@ template <typename T>
 T Vector2Base<T>::DistanceSquared(const Vector2Base<T>& a, const Vector2Base<T>& b)
 {
     return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
+}
+
+template <typename T>
+bool Vector2Base<T>::IsNormalized(const Vector2Base<T>& a)
+{
+    return Math::IsOne(a.LengthSquared());
+}
+
+template <typename T>
+bool Vector2Base<T>::IsZero(const Vector2Base<T>& a)
+{
+    return a.x == 0 && a.y == 0;
 }
 
 template <typename T>

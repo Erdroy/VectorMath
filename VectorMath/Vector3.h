@@ -6,6 +6,7 @@
 #define VECTOR3_H
 
 #include "VectorBase.h"
+#include "Quaternion.h"
 
 template<typename T>
 struct Vector3Base : VectorBase<T, 3>
@@ -55,7 +56,10 @@ public:
     /* Public members */
     void Negate();
     void Normalize();
-    Vector3Base<T> Normalized();
+
+    Vector3Base<T> Normalized() const;
+    bool IsNormalized() const;
+    bool IsZero() const;
 
     T Dot(const Vector3Base<T>& a) const;
     T Length() const;
@@ -65,9 +69,19 @@ public:
     /* Public static members */
     static Vector3Base<T> Normalize(const Vector3Base<T>& a);
     static Vector3Base<T> Negate(const Vector3Base<T>& a);
+    static Vector3Base<T> Abs(const Vector3Base<T>& a);
+    static Vector3Base<T> Lerp(const Vector3Base<T>& from, const Vector3Base<T>& to, T amount);
+    static Vector3Base<T> Cross(const Vector3Base<T>& a, const Vector3Base<T>& b);
+    static Vector3Base<T> Transform(const Vector3Base<T>& a, const Quaternion& rotation);
+
     static T Dot(const Vector3Base<T>& a, const Vector3Base<T>& b);
     static T Length(const Vector3Base<T>& a);
     static T LengthSquared(const Vector3Base<T>& a);
+    static T Distance(const Vector3Base<T>& a, const Vector3Base<T>& b);
+    static T DistanceSquared(const Vector3Base<T>& a, const Vector3Base<T>& b);
+
+    static bool IsNormalized(const Vector3Base<T>& a);
+    static bool IsZero(const Vector3Base<T>& a);
 
 public:
     /* Operators */
@@ -179,9 +193,21 @@ void Vector3Base<T>::Normalize()
 }
 
 template <typename T>
-Vector3Base<T> Vector3Base<T>::Normalized()
+Vector3Base<T> Vector3Base<T>::Normalized() const
 {
     return Normalize(*this);
+}
+
+template <typename T>
+bool Vector3Base<T>::IsNormalized() const
+{
+    return IsNormalized(*this);
+}
+
+template <typename T>
+bool Vector3Base<T>::IsZero() const
+{
+    return IsZero(*this);
 }
 
 template <typename T>
@@ -199,7 +225,7 @@ T Vector3Base<T>::Length() const
 template <typename T>
 T Vector3Base<T>::LengthSquared() const
 {
-    return (x * x) + (y * y) + (y * y);
+    return (x * x) + (y * y) + (z * z);
 }
 
 template <typename T>
@@ -219,6 +245,55 @@ Vector3Base<T> Vector3Base<T>::Negate(const Vector3Base<T>& a)
 }
 
 template <typename T>
+Vector3Base<T> Vector3Base<T>::Abs(const Vector3Base<T>& a)
+{
+    Vector3Base<T> result = a;
+    result.x = Math::Abs(result.x);
+    result.y = Math::Abs(result.y);
+    result.z = Math::Abs(result.z);
+    return result;
+}
+
+template <typename T>
+Vector3Base<T> Vector3Base<T>::Lerp(const Vector3Base<T>& from, const Vector3Base<T>& to, T amount)
+{
+    return Math::Lerp(from, to, amount);
+}
+
+template <typename T>
+Vector3Base<T> Vector3Base<T>::Cross(const Vector3Base<T>& a, const Vector3Base<T>& b)
+{
+    return Vector3Base<T>(
+        (a.y * b.z) - (a.z * b.y),
+        (a.z * b.x) - (a.x * b.z),
+        (a.x * b.y) - (a.y * b.x)
+    );
+}
+
+template <typename T>
+Vector3Base<T> Vector3Base<T>::Transform(const Vector3Base<T>& a, const Quaternion& rotation)
+{
+    const auto x = T(rotation.X + rotation.X);
+    const auto y = T(rotation.Y + rotation.Y);
+    const auto z = T(rotation.Z + rotation.Z);
+    const auto wx = T(rotation.W * x);
+    const auto wy = T(rotation.W * y);
+    const auto wz = T(rotation.W * z);
+    const auto xx = T(rotation.X * x);
+    const auto xy = T(rotation.X * y);
+    const auto xz = T(rotation.X * z);
+    const auto yy = T(rotation.Y * y);
+    const auto yz = T(rotation.Y * z);
+    const auto zz = T(rotation.Z * z);
+
+    return Vector3Base<T>(
+        ((a.x * ((T(1) - yy) - zz)) + (a.y * (xy - wz))) + (a.z * (xz + wy)),
+        ((a.x * (xy + wz)) + (a.y * ((T(1) - xx) - zz))) + (a.z * (yz - wx)),
+        ((a.x * (xz - wy)) + (a.y * (yz + wx))) + (a.z * ((T(1) - xx) - yy))
+    );
+}
+
+template <typename T>
 T Vector3Base<T>::Dot(const Vector3Base<T>& a, const Vector3Base<T>& b)
 {
     return a.Dot(b);
@@ -234,6 +309,30 @@ template <typename T>
 T Vector3Base<T>::LengthSquared(const Vector3Base<T>& a)
 {
     return a.LengthSquared();
+}
+
+template <typename T>
+T Vector3Base<T>::Distance(const Vector3Base<T>& a, const Vector3Base<T>& b)
+{
+    return Math::Sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y) + (b.z - a.z) * (b.z - a.z));
+}
+
+template <typename T>
+T Vector3Base<T>::DistanceSquared(const Vector3Base<T>& a, const Vector3Base<T>& b)
+{
+    return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y) + (b.z - a.z) * (b.z - a.z);
+}
+
+template <typename T>
+bool Vector3Base<T>::IsNormalized(const Vector3Base<T>& a)
+{
+    return Math::IsOne(a.LengthSquared());
+}
+
+template <typename T>
+bool Vector3Base<T>::IsZero(const Vector3Base<T>& a)
+{
+    return a.x == 0 && a.y == 0 && a.z == 0;
 }
 
 template <typename T>
