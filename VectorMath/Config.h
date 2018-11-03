@@ -15,8 +15,4 @@
 #define USE_UPPERCASE_COMPONENTS        DISABLE
 #endif
 
-#ifndef USE_MATH_NAMESPACE
-#define USE_MATH_NAMESPACE              DISABLE
-#endif
-
 #endif // CONFIG_H

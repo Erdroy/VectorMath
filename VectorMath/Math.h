@@ -7,14 +7,9 @@
 
 #include "Config.h"
 
-#if USE_MATH_NAMESPACE
-namespace Math
-{
-#else
 class Math
 {
 public:
-#endif
     template<typename TValue>
     static TValue Clamp(TValue value, TValue min, TValue max)
     {
@@ -59,6 +54,42 @@ public:
     }
 
     template<typename TValue>
+    static TValue Acos(TValue value)
+    {
+        return std::acos(value);
+    }
+
+    template<typename TValue>
+    static TValue Asin(TValue value)
+    {
+        return std::asin(value);
+    }
+
+    template<typename TValue>
+    static TValue Cos(TValue value)
+    {
+        return std::cos(value);
+    }
+
+    template<typename TValue>
+    static TValue Sin(TValue value)
+    {
+        return std::sin(value);
+    }
+
+    template<typename TValue>
+    static TValue Tan(TValue value)
+    {
+        return std::tan(value);
+    }
+
+    template<typename TValue>
+    static TValue Atan(TValue value)
+    {
+        return std::atan(value);
+    }
+
+    template<typename TValue>
     static TValue SmoothStep(TValue value)
     {
         return (value <= 0) ? 0
@@ -81,9 +112,20 @@ public:
     }
 
     template<typename TValue>
+    static int Sign(TValue value)
+    {
+        return value < 0 ? -1 : 1;
+    }
+
+    template<typename TValue>
     static bool IsOne(TValue value)
     {
         return IsZero(value - 1);
+    }
+
+    static bool IsZero(const int a)
+    {
+        return a == 0;
     }
 
     static bool IsZero(const float a)
@@ -95,6 +137,19 @@ public:
     {
         return Abs(a) < DBL_EPSILON;
     }
+
+public:
+    static const float ZeroTolerance;
+    static const float Pi;
+    static const float TwoPi;
+    static const float PiOverTwo;
+    static const float PiOverFour;
 };
+
+const float Math::ZeroTolerance = 1e-6f;
+const float Math::Pi = 3.1415926535897932f;
+const float Math::TwoPi = 2 * Pi;
+const float Math::PiOverTwo = Pi / 2;
+const float Math::PiOverFour = Pi / 4;
 
 #endif // MATH_H
