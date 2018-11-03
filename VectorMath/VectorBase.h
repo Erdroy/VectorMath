@@ -122,14 +122,6 @@ public:
         return components[index];
     }
 
-
-public:
-    /* Combined Accessors */
-    VectorBase<T, 2> xx() { return Vector<T, 2>(components[0], components[0]); }
-    VectorBase<T, 2> yy() { return Vector<T, 2>(components[1], components[1]); }
-    VectorBase<T, 2> xy() { return Vector<T, 2>(components[0], components[1]); }
-    VectorBase<T, 2> yx() { return Vector<T, 2>(components[1], components[0]); }
-
 public:
     /* Iterators */
     iterator begin()

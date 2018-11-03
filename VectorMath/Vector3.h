@@ -88,9 +88,9 @@ public:
 
 public:
     /* Combined Accessors */
-    VectorBase<T, 3> xxx() { return Vector<T, 3>(components[0], components[0], components[0]); }
-    VectorBase<T, 3> yyy() { return Vector<T, 3>(components[1], components[1], components[1]); }
-    VectorBase<T, 3> zzz() { return Vector<T, 3>(components[2], components[2], components[2]); }
+    VectorBase<T, 3> xxx() { return VectorBase<T, 3>(components[0], components[0], components[0]); }
+    VectorBase<T, 3> yyy() { return VectorBase<T, 3>(components[1], components[1], components[1]); }
+    VectorBase<T, 3> zzz() { return VectorBase<T, 3>(components[2], components[2], components[2]); }
 
 public:
     /* Constant static members */
