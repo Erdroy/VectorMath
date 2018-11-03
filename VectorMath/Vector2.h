@@ -6,6 +6,7 @@
 #define VECTOR2_H
 
 #include "VectorBase.h"
+#include "Quaternion.h"
 
 template<typename T>
 struct Vector2Base : VectorBase<T, 2>
@@ -50,17 +51,33 @@ public:
     void Negate();
     void Normalize();
 
+    Vector2Base<T> Normalized() const;
+    bool IsNormalized() const;
+    bool IsZero() const;
+
     T Dot(const Vector2Base<T>& a) const;
     T Length() const;
     T LengthSquared() const;
+    T Distance(const Vector2Base<T>& a) const;
 
 public:
     /* Public static members */
     static Vector2Base<T> Normalize(const Vector2Base<T>& a);
     static Vector2Base<T> Negate(const Vector2Base<T>& a);
+    static Vector2Base<T> Abs(const Vector2Base<T>& a);
+    static Vector2Base<T> Lerp(const Vector2Base<T>& from, const Vector2Base<T>& to, T amount);
+
+    // TODO: Transform - https://github.com/sharpdx/SharpDX/blob/master/Source/SharpDX.Mathematics/Vector2.cs#L983
+    //static Vector2Base<T> Transform(const Vector2Base<T>& a, const Quaternion& rotation);
+
     static T Dot(const Vector2Base<T>& a, const Vector2Base<T>& b);
     static T Length(const Vector2Base<T>& a);
     static T LengthSquared(const Vector2Base<T>& a);
+    static T Distance(const Vector2Base<T>& a, const Vector2Base<T>& b);
+    static T DistanceSquared(const Vector2Base<T>& a, const Vector2Base<T>& b);
+
+    static bool IsNormalized(const Vector2Base<T>& a);
+    static bool IsZero(const Vector2Base<T>& a);
 
 public:
     /* Operators */
@@ -159,6 +176,24 @@ void Vector2Base<T>::Normalize()
 }
 
 template <typename T>
+Vector2Base<T> Vector2Base<T>::Normalized() const
+{
+    return Normalize(*this);
+}
+
+template <typename T>
+bool Vector2Base<T>::IsNormalized() const
+{
+    return IsNormalized(*this);
+}
+
+template <typename T>
+bool Vector2Base<T>::IsZero() const
+{
+    return IsZero(*this);
+}
+
+template <typename T>
 T Vector2Base<T>::Dot(const Vector2Base<T>& a) const
 {
     return (x * a.x) + (y * a.y);
@@ -167,13 +202,31 @@ T Vector2Base<T>::Dot(const Vector2Base<T>& a) const
 template <typename T>
 T Vector2Base<T>::Length() const
 {
-    return std::sqrt(LengthSquared());
+    return Math::Sqrt(LengthSquared());
 }
 
 template <typename T>
 T Vector2Base<T>::LengthSquared() const
 {
     return (x * x) + (y * y);
+}
+
+template <typename T>
+T Vector2Base<T>::Distance(const Vector2Base<T>& a) const
+{
+    return Distance(*this, a);
+}
+
+template <typename T>
+bool Vector2Base<T>::IsNormalized(const Vector2Base<T>& a)
+{
+    return Math::IsOne(a.LengthSquared());
+}
+
+template <typename T>
+bool Vector2Base<T>::IsZero(const Vector2Base<T>& a)
+{
+    return a.x == 0 && a.y == 0;
 }
 
 template <typename T>
@@ -193,6 +246,21 @@ Vector2Base<T> Vector2Base<T>::Negate(const Vector2Base<T>& a)
 }
 
 template <typename T>
+Vector2Base<T> Vector2Base<T>::Abs(const Vector2Base<T>& a)
+{
+    Vector2Base<T> result = a;
+    result.x = Math::Abs(result.x);
+    result.y = Math::Abs(result.y);
+    return result;
+}
+
+template <typename T>
+Vector2Base<T> Vector2Base<T>::Lerp(const Vector2Base<T>& from, const Vector2Base<T>& to, T amount)
+{
+    return Math::Lerp(from, to, amount);
+}
+
+template <typename T>
 T Vector2Base<T>::Dot(const Vector2Base<T>& a, const Vector2Base<T>& b)
 {
     return a.Dot(b);
@@ -208,6 +276,18 @@ template <typename T>
 T Vector2Base<T>::LengthSquared(const Vector2Base<T>& a)
 {
     return a.LengthSquared();
+}
+
+template <typename T>
+T Vector2Base<T>::Distance(const Vector2Base<T>& a, const Vector2Base<T>& b)
+{
+    return Math::Sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
+}
+
+template <typename T>
+T Vector2Base<T>::DistanceSquared(const Vector2Base<T>& a, const Vector2Base<T>& b)
+{
+    return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
 }
 
 template <typename T>

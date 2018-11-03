@@ -6,6 +6,7 @@
 #define VECTORBASE_H
 
 #include "Config.h"
+#include "Math.h"
 
 // source: http://seanmiddleditch.com/using-stdenable_if-on-constructors/
 

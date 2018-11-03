@@ -52,6 +52,24 @@ public:
     }
 
 public:
+    /* Public members */
+    void Negate();
+    void Normalize();
+    Vector3Base<T> Normalized();
+
+    T Dot(const Vector3Base<T>& a) const;
+    T Length() const;
+    T LengthSquared() const;
+
+public:
+    /* Public static members */
+    static Vector3Base<T> Normalize(const Vector3Base<T>& a);
+    static Vector3Base<T> Negate(const Vector3Base<T>& a);
+    static T Dot(const Vector3Base<T>& a, const Vector3Base<T>& b);
+    static T Length(const Vector3Base<T>& a);
+    static T LengthSquared(const Vector3Base<T>& a);
+
+public:
     /* Operators */
     void operator+=(const Vector3Base<T>& other);
     void operator-=(const Vector3Base<T>& other);
@@ -141,6 +159,82 @@ const Vector3Base<T> Vector3Base<T>::UnitY = Vector3Base<T>(0, 1, 0);
 
 template<typename T>
 const Vector3Base<T> Vector3Base<T>::UnitZ = Vector3Base<T>(0, 0, 1);
+
+template <typename T>
+void Vector3Base<T>::Negate()
+{
+    x = -x;
+    y = -y;
+    z = -z;
+}
+
+template <typename T>
+void Vector3Base<T>::Normalize()
+{
+    T invLength = T(1) / Length();
+
+    x *= invLength;
+    y *= invLength;
+    z *= invLength;
+}
+
+template <typename T>
+Vector3Base<T> Vector3Base<T>::Normalized()
+{
+    return Normalize(*this);
+}
+
+template <typename T>
+T Vector3Base<T>::Dot(const Vector3Base<T>& a) const
+{
+    return (x * a.x) + (y * a.y) + (z * a.z);
+}
+
+template <typename T>
+T Vector3Base<T>::Length() const
+{
+    return Math::Sqrt(LengthSquared());
+}
+
+template <typename T>
+T Vector3Base<T>::LengthSquared() const
+{
+    return (x * x) + (y * y) + (y * y);
+}
+
+template <typename T>
+Vector3Base<T> Vector3Base<T>::Normalize(const Vector3Base<T>& a)
+{
+    Vector3Base<T> result = a;
+    result.Normalize();
+    return result;
+}
+
+template <typename T>
+Vector3Base<T> Vector3Base<T>::Negate(const Vector3Base<T>& a)
+{
+    Vector3Base<T> result = a;
+    result.Negate();
+    return result;
+}
+
+template <typename T>
+T Vector3Base<T>::Dot(const Vector3Base<T>& a, const Vector3Base<T>& b)
+{
+    return a.Dot(b);
+}
+
+template <typename T>
+T Vector3Base<T>::Length(const Vector3Base<T>& a)
+{
+    return a.Length();
+}
+
+template <typename T>
+T Vector3Base<T>::LengthSquared(const Vector3Base<T>& a)
+{
+    return a.LengthSquared();
+}
 
 template <typename T>
 void Vector3Base<T>::operator+=(const Vector3Base<T>& other)

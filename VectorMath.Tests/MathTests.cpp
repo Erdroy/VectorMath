@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "../VectorMath/Math.h"
+#include "../VectorMath/VectorMath.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -101,9 +101,25 @@ namespace VectorMathTests
             Assert::IsTrue(Vector2(3.0f) >= Vector2(2.0f));
         }
 
-        TEST_METHOD(Vector2Members)
+        TEST_METHOD(Vector2NormalizeLength)
         {
-            Assert::IsTrue(Vector2(1.0f, 1.0f).Length() - 1.0f < 0.001f);
+            Assert::IsTrue(Math::IsZero(Vector2(1.0f, 1.0f).Normalized().Length() - 1.0f));
+        }
+
+        TEST_METHOD(Vector2Distance)
+        {
+            Assert::IsTrue(Math::IsZero(Vector2::Distance(Vector2(0.0f, 1.0f), Vector2(0.0f, 0.0f)) - 1.0f));
+        }
+
+        TEST_METHOD(Vector2Lerp)
+        {
+            const auto interpolant = Vector2::Lerp(Vector2(0.0f, 0.0f), Vector2(1.0f, 0.0f), 0.5f);
+            Assert::IsTrue(Math::IsZero(interpolant.x - 0.5f));
+        }
+
+        TEST_METHOD(Vector3NormalizeLength)
+        {
+            Assert::IsTrue(Math::IsZero(Vector3(1.0f, 1.0f, 1.0f).Normalized().Length() - 1.0f));
         }
 
         TEST_METHOD(Vector3Operators)
