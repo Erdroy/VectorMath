@@ -504,7 +504,7 @@ Matrix4x4Base<T> Matrix4x4Base<T>::CreateLookAt(const Vector3Base<T>& eye, const
 template <typename T>
 Matrix4x4Base<T> Matrix4x4Base<T>::CreatePerspective(T fov, T aspect, T znear, T zfar)
 {
-    auto result = Identity;
+    auto result = Zero;
     auto yScale = T(1.0) / tanf(fov * T(0.5));
     auto q = zfar / (zfar - znear);
 
