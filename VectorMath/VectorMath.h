@@ -7,9 +7,9 @@
 
 #include "Config.h"
 #include "Math.h"
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Vector4.h"
+#include "Vector2Base.h"
+#include "Vector3Base.h"
+#include "Vector4Base.h"
 #include "Quaternion.h"
 #include "Matrix.h"
 

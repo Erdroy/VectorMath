@@ -6,7 +6,7 @@
 #define MATRIX_H
 
 #include "MatrixBase.h"
-#include "Vector3.h"
+#include "Vector3Base.h"
 
 template<typename T>
 struct Matrix4x4Base : MatrixBase<T, 4, 4>

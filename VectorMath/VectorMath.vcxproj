@@ -145,9 +145,9 @@
     <ClInclude Include="MatrixBase.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="Quaternion.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Vector3.h" />
-    <ClInclude Include="Vector4.h" />
+    <ClInclude Include="Vector2Base.h" />
+    <ClInclude Include="Vector3Base.h" />
+    <ClInclude Include="Vector4Base.h" />
     <ClInclude Include="VectorBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
