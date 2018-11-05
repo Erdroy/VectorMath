@@ -41,15 +41,9 @@ public:
 
 public:
     /* Constructors */
-    Quaternion()
-    {
-        components[0] = 0.0f;
-        components[1] = 0.0f;
-        components[2] = 0.0f;
-        components[3] = 0.0f;
-    }
+    Quaternion() = default;
 
-    Quaternion(const float x, const float y, const float z, const float w)
+    Quaternion(float x, float y, float z, float w)
     {
         components[0] = x;
         components[1] = y;
@@ -447,9 +441,5 @@ inline Quaternion Quaternion::operator*(const float other) const
     result.w *= other;
     return result;
 }
-
-const Quaternion Quaternion::Identity = Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
-const Quaternion Quaternion::Zero = Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-const Quaternion Quaternion::One = Quaternion(1.0f, 1.0f, 1.0f, 1.0f);
 
 #endif // QUATERNION_H

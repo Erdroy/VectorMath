@@ -38,12 +38,7 @@ public:
 
 public:
     /* Constructors */
-    Vector3Base()
-    {
-        components[0] = T(0);
-        components[1] = T(0);
-        components[2] = T(0);
-    }
+    Vector3Base() = default;
 
     explicit Vector3Base(T value)
     {
@@ -149,37 +144,37 @@ public:
 };
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Up = Vector3Base<T>(0, 1.0, 0);
+const Vector3Base<T> Vector3Base<T>::Up(0, 1.0, 0);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Down = Vector3Base<T>(0, -1, 0);
+const Vector3Base<T> Vector3Base<T>::Down(0, -1, 0);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Left = Vector3Base<T>(-1, 0, 0);
+const Vector3Base<T> Vector3Base<T>::Left(-1, 0, 0);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Right = Vector3Base<T>(1, 0, 0);
+const Vector3Base<T> Vector3Base<T>::Right(1, 0, 0);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Forward = Vector3Base<T>(-1, 0, 1);
+const Vector3Base<T> Vector3Base<T>::Forward(-1, 0, 1);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Back = Vector3Base<T>(1, 0, -1);
+const Vector3Base<T> Vector3Base<T>::Back(1, 0, -1);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::One = Vector3Base<T>(1);
+const Vector3Base<T> Vector3Base<T>::One(1);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Zero = Vector3Base<T>(0);
+const Vector3Base<T> Vector3Base<T>::Zero(0);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::UnitX = Vector3Base<T>(1, 0, 0);
+const Vector3Base<T> Vector3Base<T>::UnitX(1, 0, 0);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::UnitY = Vector3Base<T>(0, 1, 0);
+const Vector3Base<T> Vector3Base<T>::UnitY(0, 1, 0);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::UnitZ = Vector3Base<T>(0, 0, 1);
+const Vector3Base<T> Vector3Base<T>::UnitZ(0, 0, 1);
 
 template <typename T>
 void Vector3Base<T>::Negate()

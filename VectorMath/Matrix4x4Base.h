@@ -211,6 +211,12 @@ public:
 };
 
 template <typename T>
+const Matrix4x4Base<T> Matrix4x4Base<T>::Zero(0);
+
+template <typename T>
+const Matrix4x4Base<T> Matrix4x4Base<T>::Identity(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+
+template <typename T>
 void Matrix4x4Base<T>::Invert()
 {
     T b0 = (m31 * m42) - (m32 * m41);
@@ -498,7 +504,7 @@ Matrix4x4Base<T> Matrix4x4Base<T>::CreateLookAt(const Vector3Base<T>& eye, const
 template <typename T>
 Matrix4x4Base<T> Matrix4x4Base<T>::CreatePerspective(T fov, T aspect, T znear, T zfar)
 {
-    auto result = Zero;
+    auto result = Identity;
     auto yScale = T(1.0) / tanf(fov * T(0.5));
     auto q = zfar / (zfar - znear);
 
@@ -760,41 +766,38 @@ Matrix4x4Base<T> Matrix4x4Base<T>::operator*(T other) const
 template <typename T>
 Matrix4x4Base<T>& Matrix4x4Base<T>::operator=(T value)
 {
-    auto result = Zero;
-    result.m11 = value;
-    result.m12 = value;
-    result.m13 = value;
-    result.m14 = value;
-    result.m21 = value;
-    result.m22 = value;
-    result.m23 = value;
-    result.m24 = value;
-    result.m31 = value;
-    result.m32 = value;
-    result.m33 = value;
-    result.m34 = value;
-    result.m41 = value;
-    result.m42 = value;
-    result.m43 = value;
-    result.m44 = value;
+    this->m11 = value;
+    this->m12 = value;
+    this->m13 = value;
+    this->m14 = value;
+    this->m21 = value;
+    this->m22 = value;
+    this->m23 = value;
+    this->m24 = value;
+    this->m31 = value;
+    this->m32 = value;
+    this->m33 = value;
+    this->m34 = value;
+    this->m41 = value;
+    this->m42 = value;
+    this->m43 = value;
+    this->m44 = value;
 
-    return result;
+    return *this;
 }
 
 template <typename T>
 Matrix4x4Base<T>& Matrix4x4Base<T>::operator=(const T* data)
 {
-    auto result = Zero;
-    memcpy(&result, data, sizeof(components));
-    return result;
+    memcpy(this, data, sizeof(components));
+    return *this;
 }
 
 template <typename T>
 Matrix4x4Base<T>& Matrix4x4Base<T>::operator=(const Matrix4x4Base<T>& other)
 {
-    auto result = Zero;
-    memcpy(&result, &other, sizeof(components));
-    return result;
+    memcpy(&this->components[0], &(other.components[0]), sizeof(components));
+    return *this;
 }
 
 template <typename T>
@@ -822,11 +825,5 @@ void Matrix4x4Base<T>::Transpose()
     m43 = temp.m34;
     m44 = temp.m44;
 }
-
-template <typename T>
-const Matrix4x4Base<T> Matrix4x4Base<T>::Zero = Matrix4x4Base<T>(0);
-
-template <typename T>
-const Matrix4x4Base<T> Matrix4x4Base<T>::Identity = Matrix4x4Base<T>(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 
 #endif // MATRIX4X4BASE_H

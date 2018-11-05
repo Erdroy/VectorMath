@@ -41,13 +41,7 @@ public:
 
 public:
     /* Constructors */
-    Vector4Base()
-    {
-        components[0] = T(0);
-        components[1] = T(0);
-        components[2] = T(0);
-        components[3] = T(0);
-    }
+    Vector4Base() = default;
 
     explicit Vector4Base(T value)
     {
@@ -160,40 +154,40 @@ public:
 };
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Up = Vector4Base<T>(0, 1.0, 0, 0);
+const Vector4Base<T> Vector4Base<T>::Up(0, 1.0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Down = Vector4Base<T>(0, -1, 0, 0);
+const Vector4Base<T> Vector4Base<T>::Down(0, -1, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Left = Vector4Base<T>(-1, 0, 0, 0);
+const Vector4Base<T> Vector4Base<T>::Left(-1, 0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Right = Vector4Base<T>(1, 0, 0, 0);
+const Vector4Base<T> Vector4Base<T>::Right(1, 0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Forward = Vector4Base<T>(-1, 0, 1, 0);
+const Vector4Base<T> Vector4Base<T>::Forward(-1, 0, 1, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Back = Vector4Base<T>(1, 0, -1, 0);
+const Vector4Base<T> Vector4Base<T>::Back(1, 0, -1, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::One = Vector4Base<T>(1);
+const Vector4Base<T> Vector4Base<T>::One(1);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Zero = Vector4Base<T>(0);
+const Vector4Base<T> Vector4Base<T>::Zero(0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::UnitX = Vector4Base<T>(1, 0, 0, 0);
+const Vector4Base<T> Vector4Base<T>::UnitX(1, 0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::UnitY = Vector4Base<T>(0, 1, 0, 0);
+const Vector4Base<T> Vector4Base<T>::UnitY(0, 1, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::UnitZ = Vector4Base<T>(0, 0, 1, 0);
+const Vector4Base<T> Vector4Base<T>::UnitZ(0, 0, 1, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::UnitW = Vector4Base<T>(0, 0, 0, 1);
+const Vector4Base<T> Vector4Base<T>::UnitW(0, 0, 0, 1);
 
 template <typename T>
 void Vector4Base<T>::Negate()

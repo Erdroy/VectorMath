@@ -47,6 +47,12 @@ public:
         return value >= 0 ? value : -value;
     }
 
+    template<typename TBase, typename TExponent>
+    static TBase Pow(TBase base, TExponent exponent)
+    {
+        return static_cast<TBase>(std::pow(base, exponent));
+    }
+
     template<typename TValue>
     static TValue Sqrt(TValue value)
     {
@@ -128,6 +134,35 @@ public:
         return a == 0;
     }
 
+    static unsigned long RoundUpToPow2(unsigned long v)
+    {
+        v--;
+        v |= v >> 1;
+        v |= v >> 2;
+        v |= v >> 4;
+        v |= v >> 8;
+        v |= v >> 16;
+        v++;
+
+        return v;
+    }
+
+    static int RoundUp(const int numToRound, const int multiple)
+    {
+        // source: http://stackoverflow.com/questions/3407012/c-rounding-up-to-the-nearest-multiple-of-a-number
+
+        // allow round up to 0
+        if (numToRound < 0 && -numToRound < multiple)
+            return 0;
+
+        const auto remainder = numToRound % multiple;
+
+        if (remainder == 0)
+            return numToRound;
+
+        return numToRound + multiple - remainder;
+    }
+
     static bool IsZero(const float a)
     {
         return Abs(a) < FLT_EPSILON;
@@ -148,14 +183,5 @@ public:
     static const float DegreeToRadian;
     static const float RadianToDegree;
 };
-
-const float Math::ZeroTolerance = 1e-6f;
-const float Math::Pi = 3.1415926535897932f;
-const float Math::TwoPi = 2 * Pi;
-const float Math::PiOverTwo = Pi / 2;
-const float Math::PiOverFour = Pi / 4;
-
-const float Math::DegreeToRadian = Pi / 180.0f;
-const float Math::RadianToDegree = 180.0f / Pi;
 
 #endif // MATH_H

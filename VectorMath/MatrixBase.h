@@ -16,88 +16,94 @@ protected:
 
 template <typename Type> struct MatrixComponents<Type, 4, 4>
 {
-    struct
+    union
     {
-        Type m11;
-        Type m12;
-        Type m13;
-        Type m14;
+        struct
+        {
+            Type m11;
+            Type m12;
+            Type m13;
+            Type m14;
 
-        Type m21;
-        Type m22;
-        Type m23;
-        Type m24;
+            Type m21;
+            Type m22;
+            Type m23;
+            Type m24;
 
-        Type m31;
-        Type m32;
-        Type m33;
-        Type m34;
+            Type m31;
+            Type m32;
+            Type m33;
+            Type m34;
 
-        Type m41;
-        Type m42;
-        Type m43;
-        Type m44;
+            Type m41;
+            Type m42;
+            Type m43;
+            Type m44;
+        };
+
+        struct
+        {
+            Type M11;
+            Type M12;
+            Type M13;
+            Type M14;
+
+            Type M21;
+            Type M22;
+            Type M23;
+            Type M24;
+
+            Type M31;
+            Type M32;
+            Type M33;
+            Type M34;
+
+            Type M41;
+            Type M42;
+            Type M43;
+            Type M44;
+        };
+
+        Type components[4 * 4];
     };
-
-    struct
-    {
-        Type M11;
-        Type M12;
-        Type M13;
-        Type M14;
-
-        Type M21;
-        Type M22;
-        Type M23;
-        Type M24;
-
-        Type M31;
-        Type M32;
-        Type M33;
-        Type M34;
-
-        Type M41;
-        Type M42;
-        Type M43;
-        Type M44;
-    };
-
-    Type components[4 * 4];
 };
 
 template <typename Type> struct MatrixComponents<Type, 3, 3>
 {
-    struct
+    union
     {
-        Type m11;
-        Type m12;
-        Type m13;
+        struct
+        {
+            Type m11;
+            Type m12;
+            Type m13;
 
-        Type m21;
-        Type m22;
-        Type m23;
+            Type m21;
+            Type m22;
+            Type m23;
 
-        Type m31;
-        Type m32;
-        Type m33;
+            Type m31;
+            Type m32;
+            Type m33;
+        };
+
+        struct
+        {
+            Type M11;
+            Type M12;
+            Type M13;
+
+            Type M21;
+            Type M22;
+            Type M23;
+
+            Type M31;
+            Type M32;
+            Type M33;
+        };
+
+        Type components[3 * 3];
     };
-
-    struct
-    {
-        Type M11;
-        Type M12;
-        Type M13;
-
-        Type M21;
-        Type M22;
-        Type M23;
-
-        Type M31;
-        Type M32;
-        Type M33;
-    };
-
-    Type components[3 * 3];
 };
 
 template<typename T, size_t C, size_t R>

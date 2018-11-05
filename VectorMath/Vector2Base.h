@@ -34,11 +34,7 @@ public:
 
 public:
     /* Constructors */
-    Vector2Base()
-    {
-        components[0] = T(0);
-        components[1] = T(0);
-    }
+    Vector2Base() = default;
 
     explicit Vector2Base(T value)
     {
@@ -140,28 +136,28 @@ public:
 };
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Up = Vector2Base<T>(0, 1);
+const Vector2Base<T> Vector2Base<T>::Up(0, 1);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Down = Vector2Base<T>(0, -1);
+const Vector2Base<T> Vector2Base<T>::Down(0, -1);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Left = Vector2Base<T>(-1, 0);
+const Vector2Base<T> Vector2Base<T>::Left(-1, 0);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Right = Vector2Base<T>(1, 0);
+const Vector2Base<T> Vector2Base<T>::Right(1, 0);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::One = Vector2Base<T>(1);
+const Vector2Base<T> Vector2Base<T>::One(1);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::Zero = Vector2Base<T>(0);
+const Vector2Base<T> Vector2Base<T>::Zero(0);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::UnitX = Vector2Base<T>(1, 0);
+const Vector2Base<T> Vector2Base<T>::UnitX(1, 0);
 
 template<typename T>
-const Vector2Base<T> Vector2Base<T>::UnitY = Vector2Base<T>(0, 1);
+const Vector2Base<T> Vector2Base<T>::UnitY(0, 1);
 
 template <typename T>
 void Vector2Base<T>::Negate()
