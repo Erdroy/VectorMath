@@ -13,23 +13,23 @@ struct Vector2Base : VectorBase<T, 2>
 {
 protected:
     /* Protected usings */
-    using Components<T, 2>::components;
+    using VectorComponents<T, 2>::components;
 #if USE_UPPERCASE_COMPONENTS
-    using Components<T, 2>::x;
-    using Components<T, 2>::y;
+    using VectorComponents<T, 2>::x;
+    using VectorComponents<T, 2>::y;
 #else
-    using Components<T, 2>::X;
-    using Components<T, 2>::Y;
+    using VectorComponents<T, 2>::X;
+    using VectorComponents<T, 2>::Y;
 #endif
 
 public:
     /* Public usings */
 #if USE_UPPERCASE_COMPONENTS
-    using Components<T, 2>::X;
-    using Components<T, 2>::Y;
+    using VectorComponents<T, 2>::X;
+    using VectorComponents<T, 2>::Y;
 #else
-    using Components<T, 2>::x;
-    using Components<T, 2>::y;
+    using VectorComponents<T, 2>::x;
+    using VectorComponents<T, 2>::y;
 #endif
 
 public:

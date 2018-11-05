@@ -10,13 +10,13 @@
 
 // source: http://seanmiddleditch.com/using-stdenable_if-on-constructors/
 
-template <typename Type, size_t Size> struct Components
+template <typename Type, size_t Size> struct VectorComponents
 {
 protected:
     Type components[Size];
 };
 
-template <typename Type> struct Components<Type, 2>
+template <typename Type> struct VectorComponents<Type, 2>
 {
     union
     {
@@ -36,7 +36,7 @@ template <typename Type> struct Components<Type, 2>
     };
 };
 
-template <typename Type> struct Components<Type, 3>
+template <typename Type> struct VectorComponents<Type, 3>
 {
     union
     {
@@ -58,7 +58,7 @@ template <typename Type> struct Components<Type, 3>
     };
 };
 
-template <typename Type> struct Components<Type, 4>
+template <typename Type> struct VectorComponents<Type, 4>
 {
     union
     {
@@ -84,11 +84,11 @@ template <typename Type> struct Components<Type, 4>
 
 
 template<typename T, size_t S>
-struct VectorBase : Components<T, S>
+struct VectorBase : VectorComponents<T, S>
 {
 protected:
     /* Protected members */
-    using Components<T, S>::components;
+    using VectorComponents<T, S>::components;
 
 public:
     /* Types */

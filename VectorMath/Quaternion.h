@@ -11,31 +11,31 @@ struct Quaternion : VectorBase<float, 4>
 {
 protected:
     /* Protected usings */
-    using Components<float, 4>::components;
+    using VectorComponents<float, 4>::components;
 #if USE_UPPERCASE_COMPONENTS
-    using Components<float, 4>::x;
-    using Components<float, 4>::y;
-    using Components<float, 4>::z;
-    using Components<float, 4>::w;
+    using VectorComponents<float, 4>::x;
+    using VectorComponents<float, 4>::y;
+    using VectorComponents<float, 4>::z;
+    using VectorComponents<float, 4>::w;
 #else
-    using Components<float, 4>::X;
-    using Components<float, 4>::Y;
-    using Components<float, 4>::Z;
-    using Components<float, 4>::W;
+    using VectorComponents<float, 4>::X;
+    using VectorComponents<float, 4>::Y;
+    using VectorComponents<float, 4>::Z;
+    using VectorComponents<float, 4>::W;
 #endif
 
 public:
     /* Public usings */
 #if USE_UPPERCASE_COMPONENTS
-    using Components<float, 4>::X;
-    using Components<float, 4>::Y;
-    using Components<float, 4>::Z;
-    using Components<float, 4>::W;
+    using VectorComponents<float, 4>::X;
+    using VectorComponents<float, 4>::Y;
+    using VectorComponents<float, 4>::Z;
+    using VectorComponents<float, 4>::W;
 #else
-    using Components<float, 4>::x;
-    using Components<float, 4>::y;
-    using Components<float, 4>::z;
-    using Components<float, 4>::w;
+    using VectorComponents<float, 4>::x;
+    using VectorComponents<float, 4>::y;
+    using VectorComponents<float, 4>::z;
+    using VectorComponents<float, 4>::w;
 #endif
 
 public:

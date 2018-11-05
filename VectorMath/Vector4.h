@@ -12,31 +12,31 @@ struct Vector4Base : VectorBase<T, 4>
 {
 protected:
     /* Protected usings */
-    using Components<T, 4>::components;
+    using VectorComponents<T, 4>::components;
 #if USE_UPPERCASE_COMPONENTS
-    using Components<T, 4>::x;
-    using Components<T, 4>::y;
-    using Components<T, 4>::z;
-    using Components<T, 4>::w;
+    using VectorComponents<T, 4>::x;
+    using VectorComponents<T, 4>::y;
+    using VectorComponents<T, 4>::z;
+    using VectorComponents<T, 4>::w;
 #else
-    using Components<T, 4>::X;
-    using Components<T, 4>::Y;
-    using Components<T, 4>::Z;
-    using Components<T, 4>::W;
+    using VectorComponents<T, 4>::X;
+    using VectorComponents<T, 4>::Y;
+    using VectorComponents<T, 4>::Z;
+    using VectorComponents<T, 4>::W;
 #endif
 
 public:
     /* Public usings */
 #if USE_UPPERCASE_COMPONENTS
-    using Components<T, 4>::X;
-    using Components<T, 4>::Y;
-    using Components<T, 4>::Z;
-    using Components<T, 4>::W;
+    using VectorComponents<T, 4>::X;
+    using VectorComponents<T, 4>::Y;
+    using VectorComponents<T, 4>::Z;
+    using VectorComponents<T, 4>::W;
 #else
-    using Components<T, 4>::x;
-    using Components<T, 4>::y;
-    using Components<T, 4>::z;
-    using Components<T, 4>::w;
+    using VectorComponents<T, 4>::x;
+    using VectorComponents<T, 4>::y;
+    using VectorComponents<T, 4>::z;
+    using VectorComponents<T, 4>::w;
 #endif
 
 public:

@@ -13,27 +13,27 @@ struct Vector3Base : VectorBase<T, 3>
 {
 protected:
     /* Protected usings */
-    using Components<T, 3>::components;
+    using VectorComponents<T, 3>::components;
 #if USE_UPPERCASE_COMPONENTS
-    using Components<T, 3>::x;
-    using Components<T, 3>::y;
-    using Components<T, 3>::z;
+    using VectorComponents<T, 3>::x;
+    using VectorComponents<T, 3>::y;
+    using VectorComponents<T, 3>::z;
 #else
-    using Components<T, 3>::X;
-    using Components<T, 3>::Y;
-    using Components<T, 3>::Z;
+    using VectorComponents<T, 3>::X;
+    using VectorComponents<T, 3>::Y;
+    using VectorComponents<T, 3>::Z;
 #endif
 
 public:
     /* Public usings */
 #if USE_UPPERCASE_COMPONENTS
-    using Components<T, 3>::X;
-    using Components<T, 3>::Y;
-    using Components<T, 3>::Z;
+    using VectorComponents<T, 3>::X;
+    using VectorComponents<T, 3>::Y;
+    using VectorComponents<T, 3>::Z;
 #else
-    using Components<T, 3>::x;
-    using Components<T, 3>::y;
-    using Components<T, 3>::z;
+    using VectorComponents<T, 3>::x;
+    using VectorComponents<T, 3>::y;
+    using VectorComponents<T, 3>::z;
 #endif
 
 public:
