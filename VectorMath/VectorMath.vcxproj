@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Config.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="MatrixBase.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="Quaternion.h" />

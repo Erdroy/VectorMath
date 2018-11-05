@@ -5,11 +5,13 @@
 #ifndef VECTORMATH_H
 #define VECTORMATH_H
 
+#include "Config.h"
+#include "Math.h"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Vector4.h"
 #include "Quaternion.h"
-//#include "Matrix.h"
+#include "Matrix.h"
 
 using Vector2f = Vector2Base<float>;
 using Vector3f = Vector3Base<float>;
@@ -18,6 +20,11 @@ using Vector4f = Vector4Base<float>;
 using Vector2d = Vector2Base<double>;
 using Vector3d = Vector3Base<double>;
 using Vector4d = Vector4Base<double>;
+
+using Matrix4x4f = Matrix4x4Base<float>;
+using Matrix4x4d = Matrix4x4Base<double>;
+
+using Matrix = Matrix4x4f; // Maybe we want to also make the matrix double precision?
 
 #ifndef MATH_DEFAULT_DOUBLE_PRECISION
 using Vector2 = Vector2f;
