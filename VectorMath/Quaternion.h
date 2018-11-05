@@ -265,7 +265,7 @@ inline Quaternion Quaternion::Lerp(const Quaternion& from, const Quaternion& to,
         (inverse * from.w) - (amount * to.w)).Normalized();
 }
 
-inline Quaternion Quaternion::Slerp(const Quaternion& from, const Quaternion& to, float amount)
+inline Quaternion Quaternion::Slerp(const Quaternion& from, const Quaternion& to, const float amount)
 {
     const auto dot = Dot(from, to);
 

@@ -144,6 +144,9 @@ public:
     static const float TwoPi;
     static const float PiOverTwo;
     static const float PiOverFour;
+
+    static const float DegreeToRadian;
+    static const float RadianToDegree;
 };
 
 const float Math::ZeroTolerance = 1e-6f;
@@ -151,5 +154,8 @@ const float Math::Pi = 3.1415926535897932f;
 const float Math::TwoPi = 2 * Pi;
 const float Math::PiOverTwo = Pi / 2;
 const float Math::PiOverFour = Pi / 4;
+
+const float Math::DegreeToRadian = Pi / 180.0f;
+const float Math::RadianToDegree = 180.0f / Pi;
 
 #endif // MATH_H
