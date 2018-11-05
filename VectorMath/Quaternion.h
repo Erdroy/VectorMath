@@ -6,6 +6,7 @@
 #define QUATERNION_H
 
 #include "VectorBase.h"
+#include "MatrixBase.h"
 
 struct Quaternion : VectorBase<float, 4>
 {
@@ -85,7 +86,7 @@ public:
 
     static Quaternion Rotation(const VectorBase<float, 3>& axis, float angle);
     static Quaternion Rotation(float yaw, float pitch, float roll);
-    //static Quaternion Rotation(const Matrix& matrix);
+    static Quaternion Rotation(const MatrixBase<float, 4, 4>& matrix);
 
     static bool IsNormalized(const Quaternion& q);
     static bool IsIdentitiy(const Quaternion& q);
@@ -332,6 +333,58 @@ inline Quaternion Quaternion::Rotation(const float yaw, const float pitch, const
         (cosYaw * cosPitch * sinRoll) - (sinYaw * sinPitch * cosRoll),
         (cosYaw * cosPitch * cosRoll) + (sinYaw * sinPitch * sinRoll)
     };
+}
+
+inline Quaternion Quaternion::Rotation(const MatrixBase<float, 4, 4>& matrix)
+{
+    float sqrt;
+    float half;
+
+    const auto scale = matrix.m11 + matrix.m22 + matrix.m33;
+    auto result = Identity;
+
+    if (scale > 0.0f)
+    {
+        sqrt = Math::Sqrt(scale + 1.0f);
+        result.W = sqrt * 0.5f;
+        sqrt = 0.5f / sqrt;
+
+        result.x = (matrix.m23 - matrix.m32) * sqrt;
+        result.y = (matrix.m31 - matrix.m13) * sqrt;
+        result.z = (matrix.m12 - matrix.m21) * sqrt;
+    }
+    else if ((matrix.m11 >= matrix.m22) && (matrix.m11 >= matrix.m33))
+    {
+        sqrt = Math::Sqrt(1.0f + matrix.m11 - matrix.m22 - matrix.m33);
+        half = 0.5f / sqrt;
+
+        result.x = 0.5f * sqrt;
+        result.y = (matrix.m12 + matrix.m21) * half;
+        result.z = (matrix.m13 + matrix.m31) * half;
+        result.W = (matrix.m23 - matrix.m32) * half;
+    }
+    else if (matrix.m22 > matrix.m33)
+    {
+        sqrt = Math::Sqrt(1.0f + matrix.m22 - matrix.m11 - matrix.m33);
+        half = 0.5f / sqrt;
+
+        result.x = (matrix.m21 + matrix.m12) * half;
+        result.y = 0.5f * sqrt;
+        result.z = (matrix.m32 + matrix.m23) * half;
+        result.W = (matrix.m31 - matrix.m13) * half;
+    }
+    else
+    {
+        sqrt = Math::Sqrt(1.0f + matrix.m33 - matrix.m11 - matrix.m22);
+        half = 0.5f / sqrt;
+
+        result.x = (matrix.m31 + matrix.m13) * half;
+        result.y = (matrix.m32 + matrix.m23) * half;
+        result.z = 0.5f * sqrt;
+        result.W = (matrix.m12 - matrix.m21) * half;
+    }
+
+    return result;
 }
 
 inline bool Quaternion::IsNormalized(const Quaternion& q)

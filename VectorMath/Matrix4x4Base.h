@@ -180,9 +180,9 @@ public:
     static Matrix4x4Base<T> CreateRotationX(T angle);
     static Matrix4x4Base<T> CreateRotationY(T angle);
     static Matrix4x4Base<T> CreateRotationZ(T angle);
-    static Matrix4x4Base<T> CreateRotationAxis(const VectorBase<T, 3>& axis, T angle);
-    static Matrix4x4Base<T> CreateRotationQuaternion(const Quaternion& rotation);
-    static Matrix4x4Base<T> CreateRotationYawPitchRoll(T yaw, T pitch, T roll);
+    static Matrix4x4Base<T> CreateRotation(const VectorBase<T, 3>& axis, T angle);
+    static Matrix4x4Base<T> CreateRotation(const Quaternion& rotation);
+    static Matrix4x4Base<T> CreateRotation(T yaw, T pitch, T roll);
 
     static Matrix4x4Base<T> CreateTransform(const VectorBase<T, 3>& translation, const Quaternion& rotation, const VectorBase<T, 3>& scaling);
 
@@ -336,7 +336,7 @@ void Matrix4x4Base<T>::ComposeTransform(const VectorBase<T, 3>& translation, con
     const VectorBase<T, 3>& scale)
 {
     auto matrix = Matrix4x4Base<T>::Translation(translation);
-    matrix *= Matrix4x4Base<T>::CreateRotationQuaternion(rotation);
+    matrix *= Matrix4x4Base<T>::CreateRotation(rotation);
     matrix *= Matrix4x4Base<T>::Scale(scale);
 
     *this = matrix;
@@ -595,7 +595,7 @@ Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotationZ(T angle)
 }
 
 template <typename T>
-Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotationAxis(const VectorBase<T, 3>& axis, T angle)
+Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotation(const VectorBase<T, 3>& axis, T angle)
 {
     const T x = axis.X;
     const T y = axis.Y;
@@ -623,7 +623,7 @@ Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotationAxis(const VectorBase<T, 3>& ax
 }
 
 template <typename T>
-Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotationQuaternion(const Quaternion& rotation)
+Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotation(const Quaternion& rotation)
 {
     const auto xx = T(rotation.X * rotation.X);
     const auto yy = T(rotation.Y * rotation.Y);
@@ -649,16 +649,16 @@ Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotationQuaternion(const Quaternion& ro
 }
 
 template <typename T>
-Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotationYawPitchRoll(T yaw, T pitch, T roll)
+Matrix4x4Base<T> Matrix4x4Base<T>::CreateRotation(T yaw, T pitch, T roll)
 {
-    return Matrix4x4Base<T>::CreateRotationQuaternion(Quaternion::Rotation(yaw, pitch, roll));
+    return Matrix4x4Base<T>::CreateRotation(Quaternion::Rotation(yaw, pitch, roll));
 }
 
 template <typename T>
 Matrix4x4Base<T> Matrix4x4Base<T>::CreateTransform(const VectorBase<T, 3>& translation, const Quaternion& rotation,
     const VectorBase<T, 3>& scaling)
 {
-    return Matrix4x4Base<T>::CreateTranslation(translation) * Matrix4x4Base<T>::CreateRotationQuaternion(rotation) * Matrix4x4Base<T>::CreateScaling(scaling);
+    return Matrix4x4Base<T>::CreateTranslation(translation) * Matrix4x4Base<T>::CreateRotation(rotation) * Matrix4x4Base<T>::CreateScaling(scaling);
 }
 
 template <typename T>
