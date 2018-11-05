@@ -2,8 +2,8 @@
 
 #pragma once
 
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef MATRIX4X4BASE_H
+#define MATRIX4X4BASE_H
 
 #include "MatrixBase.h"
 #include "Vector3Base.h"
@@ -823,4 +823,4 @@ const Matrix4x4Base<T> Matrix4x4Base<T>::Zero = Matrix4x4Base<T>(0);
 template <typename T>
 const Matrix4x4Base<T> Matrix4x4Base<T>::Identity = Matrix4x4Base<T>(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 
-#endif // MATRIX_H
+#endif // MATRIX4X4BASE_H

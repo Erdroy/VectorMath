@@ -11,7 +11,7 @@
 #include "Vector3Base.h"
 #include "Vector4Base.h"
 #include "Quaternion.h"
-#include "Matrix.h"
+#include "Matrix4x4Base.h"
 
 using Vector2f = Vector2Base<float>;
 using Vector3f = Vector3Base<float>;
