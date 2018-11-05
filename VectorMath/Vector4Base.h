@@ -41,6 +41,14 @@ public:
 
 public:
     /* Constructors */
+    Vector4Base()
+    {
+        components[0] = T(0);
+        components[1] = T(0);
+        components[2] = T(0);
+        components[3] = T(0);
+    }
+
     explicit Vector4Base(T value)
     {
         components[0] = value;

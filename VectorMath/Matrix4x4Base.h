@@ -102,6 +102,12 @@ public:
 
 public:
     /* Constructors */
+    Matrix4x4Base()
+    {
+        for (auto i = 0u; i < 16u; i++)
+            components[i] = T(0);
+    }
+
     explicit Matrix4x4Base(T value)
     {
         for (auto i = 0u; i < 16u; i++)

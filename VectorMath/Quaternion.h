@@ -41,6 +41,14 @@ public:
 
 public:
     /* Constructors */
+    Quaternion()
+    {
+        components[0] = 0.0f;
+        components[1] = 0.0f;
+        components[2] = 0.0f;
+        components[3] = 0.0f;
+    }
+
     Quaternion(const float x, const float y, const float z, const float w)
     {
         components[0] = x;

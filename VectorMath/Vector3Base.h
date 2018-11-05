@@ -38,6 +38,13 @@ public:
 
 public:
     /* Constructors */
+    Vector3Base()
+    {
+        components[0] = T(0);
+        components[1] = T(0);
+        components[2] = T(0);
+    }
+
     explicit Vector3Base(T value)
     {
         components[0] = value;

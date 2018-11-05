@@ -34,6 +34,12 @@ public:
 
 public:
     /* Constructors */
+    Vector2Base()
+    {
+        components[0] = T(0);
+        components[1] = T(0);
+    }
+
     explicit Vector2Base(T value)
     {
         components[0] = value;
