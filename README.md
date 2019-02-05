@@ -4,7 +4,7 @@ SharpDX Inspired C++ vector math library (scalar only).
 
 **Status:** Production Ready
 
-VectorMath was designed to be flexible, allows to define vectors using any integer/floating-point type and even .
+VectorMath was designed to be flexible, allows to define vectors using any integer/floating-point type.
 
 Sample:
 ```C++
