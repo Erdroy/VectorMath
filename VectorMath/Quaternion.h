@@ -1,4 +1,4 @@
-// VectorMath (c) 2018 Damian 'Erdroy' Korczowski
+// VectorMath (c) 2018-2019 Damian 'Erdroy' Korczowski
 
 #pragma once
 
@@ -67,6 +67,8 @@ public:
 
     bool IsIdentitiy() const;
     bool IsNormalized() const;
+    bool IsNaN() const;
+    bool IsInfinity() const;
 
 public:
     /* Public static members */
@@ -90,9 +92,13 @@ public:
     static Quaternion Rotation(float yaw, float pitch, float roll);
     static Quaternion Rotation(const MatrixBase<float, 4, 4>& matrix);
 
+    static bool NearEqual(const Quaternion& a, const Quaternion& b);
+
     static bool IsNormalized(const Quaternion& q);
     static bool IsIdentitiy(const Quaternion& q);
     static bool IsZero(const Quaternion& q);
+    static bool IsNaN(const Quaternion& a);
+    static bool IsInfinity(const Quaternion& a);
 
 public:
     /* Operators */
@@ -116,7 +122,12 @@ inline void Quaternion::Conjugate()
 
 inline void Quaternion::Normalize()
 {
-    const auto invLength = 1.0f / Length();
+    const auto  lenSqr = LengthSquared();
+
+    if (Math::IsZero(lenSqr))
+        return;
+
+    const auto  invLength = 1.0f  / Math::Sqrt(lenSqr);
 
     x *= invLength;
     y *= invLength;
@@ -198,6 +209,16 @@ inline bool Quaternion::IsIdentitiy() const
 inline bool Quaternion::IsNormalized() const
 {
     return IsNormalized(*this);
+}
+
+inline bool Quaternion::IsNaN() const
+{
+    return isnan(x) || isnan(y) || isnan(z) || isnan(w);
+}
+
+inline bool Quaternion::IsInfinity() const
+{
+    return isinf(x) || isinf(y) || isinf(z) || isinf(w);
 }
 
 inline Quaternion Quaternion::Conjugate(const Quaternion& q)
@@ -389,6 +410,11 @@ inline Quaternion Quaternion::Rotation(const MatrixBase<float, 4, 4>& matrix)
     return result;
 }
 
+inline bool Quaternion::NearEqual(const Quaternion& a, const Quaternion& b)
+{
+    return Math::NearEqual(a.x, b.x) && Math::NearEqual(a.y, b.y) && Math::NearEqual(a.z, b.z) && Math::NearEqual(a.w, b.w);
+}
+
 inline bool Quaternion::IsNormalized(const Quaternion& q)
 {
     return Math::IsOne(q.LengthSquared());
@@ -402,6 +428,16 @@ inline bool Quaternion::IsIdentitiy(const Quaternion& q)
 inline bool Quaternion::IsZero(const Quaternion& q)
 {
     return q.x == 0 && q.y == 0 && q.z == 0 && q.w == 0;
+}
+
+inline bool Quaternion::IsNaN(const Quaternion& a)
+{
+    return a.IsNaN();
+}
+
+inline bool Quaternion::IsInfinity(const Quaternion& a)
+{
+    return a.IsInfinity();
 }
 
 inline void Quaternion::operator*=(const Quaternion& other)

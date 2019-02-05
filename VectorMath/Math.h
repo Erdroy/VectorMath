@@ -1,4 +1,4 @@
-// VectorMath (c) 2018 Damian 'Erdroy' Korczowski
+// VectorMath (c) 2018-2019 Damian 'Erdroy' Korczowski
 
 #pragma once
 
@@ -121,6 +121,12 @@ public:
     static int Sign(TValue value)
     {
         return value < 0 ? -1 : 1;
+    }
+
+    template<typename TValue>
+    static bool NearEqual(TValue a, TValue b)
+    {
+        return Abs(a - b) < ZeroTolerance;
     }
 
     template<typename TValue>

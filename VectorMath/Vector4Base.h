@@ -1,4 +1,4 @@
-// VectorMath (c) 2018 Damian 'Erdroy' Korczowski
+// VectorMath (c) 2018-2019 Damian 'Erdroy' Korczowski
 
 #pragma once
 
@@ -67,6 +67,8 @@ public:
     Vector4Base<T> Normalized() const;
     bool IsNormalized() const;
     bool IsZero() const;
+    bool IsNaN() const;
+    bool IsInfinity() const;
 
     T Dot(const Vector4Base<T>& a) const;
     T Length() const;
@@ -79,6 +81,7 @@ public:
     static Vector4Base<T> Abs(const Vector4Base<T>& a);
     static Vector4Base<T> Lerp(const Vector4Base<T>& from, const Vector4Base<T>& to, T amount);
     static Vector4Base<T> Transform(const Vector4Base<T>& a, const Quaternion& rotation);
+    static Vector4Base<T> Transform(const Vector4Base<T>& a, const MatrixBase<T, 4, 4>& matrix);
 
     static T Dot(const Vector4Base<T>& a, const Vector4Base<T>& b);
     static T Length(const Vector4Base<T>& a);
@@ -86,8 +89,12 @@ public:
     static T Distance(const Vector4Base<T>& a, const Vector4Base<T>& b);
     static T DistanceSquared(const Vector4Base<T>& a, const Vector4Base<T>& b);
 
+    static bool NearEqual(const Vector4Base<T>& a, const Vector4Base<T>& b);
+
     static bool IsNormalized(const Vector4Base<T>& a);
     static bool IsZero(const Vector4Base<T>& a);
+    static bool IsNaN(const Vector4Base<T>& a);
+    static bool IsInfinity(const Vector4Base<T>& a);
 
 public:
     /* Operators */
@@ -166,10 +173,10 @@ template<typename T>
 const Vector4Base<T> Vector4Base<T>::Right(1, 0, 0, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Forward(-1, 0, 1, 0);
+const Vector4Base<T> Vector4Base<T>::Forward(0, 0, 1, 0);
 
 template<typename T>
-const Vector4Base<T> Vector4Base<T>::Back(1, 0, -1, 0);
+const Vector4Base<T> Vector4Base<T>::Back(0, 0, -1, 0);
 
 template<typename T>
 const Vector4Base<T> Vector4Base<T>::One(1);
@@ -201,7 +208,12 @@ void Vector4Base<T>::Negate()
 template <typename T>
 void Vector4Base<T>::Normalize()
 {
-    T invLength = T(1) / Length();
+    T lenSqr = LengthSquared();
+
+    if (Math::IsZero(lenSqr))
+        return;
+
+    T invLength = T(1) / Math::Sqrt(lenSqr);
 
     x *= invLength;
     y *= invLength;
@@ -225,6 +237,18 @@ template <typename T>
 bool Vector4Base<T>::IsZero() const
 {
     return IsZero(*this);
+}
+
+template <typename T>
+bool Vector4Base<T>::IsNaN() const
+{
+    return isnan(x) || isnan(y) || isnan(z) || isnan(w);
+}
+
+template <typename T>
+bool Vector4Base<T>::IsInfinity() const
+{
+    return isinf(x) || isinf(y) || isinf(z) || isinf(w);
 }
 
 template <typename T>
@@ -303,6 +327,16 @@ Vector4Base<T> Vector4Base<T>::Transform(const Vector4Base<T>& a, const Quaterni
 }
 
 template <typename T>
+Vector4Base<T> Vector4Base<T>::Transform(const Vector4Base<T>& a, const MatrixBase<T, 4, 4>& matrix)
+{
+    return Vector4Base<T>(
+        (a.x * matrix.m11) + (a.y * matrix.m21) + (a.z * matrix.m31) + (a.w * matrix.m41),
+        (a.x * matrix.m12) + (a.y * matrix.m22) + (a.z * matrix.m32) + (a.w * matrix.m42),
+        (a.x * matrix.m13) + (a.y * matrix.m23) + (a.z * matrix.m33) + (a.w * matrix.m43),
+        (a.x * matrix.m14) + (a.y * matrix.m24) + (a.z * matrix.m34) + (a.w * matrix.m44));
+}
+
+template <typename T>
 T Vector4Base<T>::Dot(const Vector4Base<T>& a, const Vector4Base<T>& b)
 {
     return a.Dot(b);
@@ -333,6 +367,12 @@ T Vector4Base<T>::DistanceSquared(const Vector4Base<T>& a, const Vector4Base<T>&
 }
 
 template <typename T>
+bool Vector4Base<T>::NearEqual(const Vector4Base<T>& a, const Vector4Base<T>& b)
+{
+    return Math::NearEqual(a.x, b.x) && Math::NearEqual(a.y, b.y) && Math::NearEqual(a.z, b.z) && Math::NearEqual(a.w, b.w);
+}
+
+template <typename T>
 bool Vector4Base<T>::IsNormalized(const Vector4Base<T>& a)
 {
     return Math::IsOne(a.LengthSquared());
@@ -342,6 +382,18 @@ template <typename T>
 bool Vector4Base<T>::IsZero(const Vector4Base<T>& a)
 {
     return a.x == 0 && a.y == 0 && a.z == 0 && a.w == 0;
+}
+
+template <typename T>
+bool Vector4Base<T>::IsNaN(const Vector4Base<T>& a)
+{
+    return a.IsNaN();
+}
+
+template <typename T>
+bool Vector4Base<T>::IsInfinity(const Vector4Base<T>& a)
+{
+    return a.IsInfinity();
 }
 
 template <typename T>

@@ -1,3 +1,5 @@
+// VectorMath (c) 2018-2019 Damian 'Erdroy' Korczowski
+
 #pragma once
 
 #ifndef CONFIG_H

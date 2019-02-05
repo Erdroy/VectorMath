@@ -1,4 +1,4 @@
-// VectorMath (c) 2018 Damian 'Erdroy' Korczowski
+// VectorMath (c) 2018-2019 Damian 'Erdroy' Korczowski
 
 #pragma once
 
@@ -146,18 +146,18 @@ public:
 
     bool IsIdentity();
 
-    VectorBase<T, 3> Translation();
-    VectorBase<T, 3> Scale();
+    Vector3Base<T> Translation();
+    Vector3Base<T> Scale();
 
-    void DecomposeTransform(VectorBase<T, 3>& translation, Quaternion& rotation, VectorBase<T, 3>& scale);
+    void DecomposeTransform(Vector3Base<T>& translation, Quaternion& rotation, Vector3Base<T>& scale);
     void ComposeTransform(const VectorBase<T, 3>& translation, const Quaternion& rotation, const VectorBase<T, 3>& scale);
 
-    VectorBase<T, 3> Up();
-    VectorBase<T, 3> Down();
-    VectorBase<T, 3> Left();
-    VectorBase<T, 3> Right();
-    VectorBase<T, 3> Forward();
-    VectorBase<T, 3> Backward();
+    Vector3Base<T> Up();
+    Vector3Base<T> Down();
+    Vector3Base<T> Left();
+    Vector3Base<T> Right();
+    Vector3Base<T> Forward();
+    Vector3Base<T> Backward();
 
 public:
     /* Public static members */
@@ -165,14 +165,14 @@ public:
     static Matrix4x4Base<T> Transpose(const Matrix4x4Base<T>& matrix);
     static Matrix4x4Base<T> Negate(const Matrix4x4Base<T>& matrix);
 
-    static VectorBase<T, 3> Translation(const Matrix4x4Base<T>& matrix);
-    static VectorBase<T, 3> Scale(const Matrix4x4Base<T>& matrix);
-    static VectorBase<T, 3> Up(const Matrix4x4Base<T>& matrix);
-    static VectorBase<T, 3> Down(const Matrix4x4Base<T>& matrix);
-    static VectorBase<T, 3> Left(const Matrix4x4Base<T>& matrix);
-    static VectorBase<T, 3> Right(const Matrix4x4Base<T>& matrix);
-    static VectorBase<T, 3> Forward(const Matrix4x4Base<T>& matrix);
-    static VectorBase<T, 3> Backward(const Matrix4x4Base<T>& matrix);
+    static Vector3Base<T> Translation(const Matrix4x4Base<T>& matrix);
+    static Vector3Base<T> Scale(const Matrix4x4Base<T>& matrix);
+    static Vector3Base<T> Up(const Matrix4x4Base<T>& matrix);
+    static Vector3Base<T> Down(const Matrix4x4Base<T>& matrix);
+    static Vector3Base<T> Left(const Matrix4x4Base<T>& matrix);
+    static Vector3Base<T> Right(const Matrix4x4Base<T>& matrix);
+    static Vector3Base<T> Forward(const Matrix4x4Base<T>& matrix);
+    static Vector3Base<T> Backward(const Matrix4x4Base<T>& matrix);
 
     static bool IsIdentity(const Matrix4x4Base<T>& matrix);
 
@@ -320,15 +320,15 @@ bool Matrix4x4Base<T>::IsIdentity()
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Translation()
+Vector3Base<T> Matrix4x4Base<T>::Translation()
 {
     return Vector3Base<T>{ m41, m42, m43 };
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Scale()
+Vector3Base<T> Matrix4x4Base<T>::Scale()
 {
-    VectorBase<T, 3> scale;
+    Vector3Base<T> scale;
     scale.x = Math::Sqrt((m11 * m11) + (m12 * m12) + (m13 * m13));
     scale.y = Math::Sqrt((m21 * m21) + (m22 * m22) + (m23 * m23));
     scale.z = Math::Sqrt((m31 * m31) + (m32 * m32) + (m33 * m33));
@@ -336,7 +336,7 @@ VectorBase<T, 3> Matrix4x4Base<T>::Scale()
 }
 
 template <typename T>
-void Matrix4x4Base<T>::DecomposeTransform(VectorBase<T, 3>& translation, Quaternion& rotation, VectorBase<T, 3>& scale)
+void Matrix4x4Base<T>::DecomposeTransform(Vector3Base<T>& translation, Quaternion& rotation, Vector3Base<T>& scale)
 {
     translation = Translation();
     scale = Scale();
@@ -347,47 +347,47 @@ template <typename T>
 void Matrix4x4Base<T>::ComposeTransform(const VectorBase<T, 3>& translation, const Quaternion& rotation,
     const VectorBase<T, 3>& scale)
 {
-    auto matrix = Matrix4x4Base<T>::Translation(translation);
+    auto matrix = Matrix4x4Base<T>::Scale(scale);
     matrix *= Matrix4x4Base<T>::CreateRotation(rotation);
-    matrix *= Matrix4x4Base<T>::Scale(scale);
+    matrix *= Matrix4x4Base<T>::Translation(translation);
 
     *this = matrix;
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Up()
+Vector3Base<T> Matrix4x4Base<T>::Up()
 {
     return Vector3Base<T>{ m21, m22, m23 };
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Down()
+Vector3Base<T> Matrix4x4Base<T>::Down()
 {
     return Vector3Base<T>{ -m21, -m22, -m23 };
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Left()
+Vector3Base<T> Matrix4x4Base<T>::Left()
 {
     return Vector3Base<T>{ -m11, -m12, -m13 };
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Right()
+Vector3Base<T> Matrix4x4Base<T>::Right()
 {
     return Vector3Base<T>{ m11, m12, m13 };
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Forward()
+Vector3Base<T> Matrix4x4Base<T>::Forward()
 {
-    return Vector3Base<T>{ -m31, -m32, -m33 };
+    return Vector3Base<T>{ m31, m32, m33 };
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Backward()
+Vector3Base<T> Matrix4x4Base<T>::Backward()
 {
-    return Vector3Base<T>{ m31, m32, m33 };
+    return Vector3Base<T>{ -m31, -m32, -m33 };
 }
 
 template <typename T>
@@ -415,49 +415,49 @@ Matrix4x4Base<T> Matrix4x4Base<T>::Negate(const Matrix4x4Base<T>& matrix)
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Translation(const Matrix4x4Base<T>& matrix)
+Vector3Base<T> Matrix4x4Base<T>::Translation(const Matrix4x4Base<T>& matrix)
 {
     return matrix.Translation();
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Scale(const Matrix4x4Base<T>& matrix)
+Vector3Base<T> Matrix4x4Base<T>::Scale(const Matrix4x4Base<T>& matrix)
 {
     return matrix.Scale();
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Up(const Matrix4x4Base<T>& matrix)
+Vector3Base<T> Matrix4x4Base<T>::Up(const Matrix4x4Base<T>& matrix)
 {
     return matrix.Up();
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Down(const Matrix4x4Base<T>& matrix)
+Vector3Base<T> Matrix4x4Base<T>::Down(const Matrix4x4Base<T>& matrix)
 {
     return matrix.Down();
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Left(const Matrix4x4Base<T>& matrix)
+Vector3Base<T> Matrix4x4Base<T>::Left(const Matrix4x4Base<T>& matrix)
 {
     return matrix.Left();
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Right(const Matrix4x4Base<T>& matrix)
+Vector3Base<T> Matrix4x4Base<T>::Right(const Matrix4x4Base<T>& matrix)
 {
     return matrix.Right();
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Forward(const Matrix4x4Base<T>& matrix)
+Vector3Base<T> Matrix4x4Base<T>::Forward(const Matrix4x4Base<T>& matrix)
 {
     return matrix.Forward();
 }
 
 template <typename T>
-VectorBase<T, 3> Matrix4x4Base<T>::Backward(const Matrix4x4Base<T>& matrix)
+Vector3Base<T> Matrix4x4Base<T>::Backward(const Matrix4x4Base<T>& matrix)
 {
     return matrix.Backward();
 }
@@ -505,7 +505,7 @@ template <typename T>
 Matrix4x4Base<T> Matrix4x4Base<T>::CreatePerspective(T fov, T aspect, T znear, T zfar)
 {
     auto result = Zero;
-    auto yScale = T(1.0) / tanf(fov * T(0.5));
+    auto yScale = T(1.0) / Math::Tan(fov * T(0.5));
     auto q = zfar / (zfar - znear);
 
     result.m11 = yScale / aspect;
@@ -670,7 +670,7 @@ template <typename T>
 Matrix4x4Base<T> Matrix4x4Base<T>::CreateTransform(const VectorBase<T, 3>& translation, const Quaternion& rotation,
     const VectorBase<T, 3>& scaling)
 {
-    return Matrix4x4Base<T>::CreateTranslation(translation) * Matrix4x4Base<T>::CreateRotation(rotation) * Matrix4x4Base<T>::CreateScaling(scaling);
+    return Matrix4x4Base<T>::CreateScaling(scaling) * Matrix4x4Base<T>::CreateRotation(rotation) * Matrix4x4Base<T>::CreateTranslation(translation);
 }
 
 template <typename T>

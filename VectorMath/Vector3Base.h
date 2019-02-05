@@ -1,4 +1,4 @@
-// VectorMath (c) 2018 Damian 'Erdroy' Korczowski
+// VectorMath (c) 2018-2019 Damian 'Erdroy' Korczowski
 
 #pragma once
 
@@ -62,6 +62,8 @@ public:
     Vector3Base<T> Normalized() const;
     bool IsNormalized() const;
     bool IsZero() const;
+    bool IsNaN() const;
+    bool IsInfinity() const;
 
     T Dot(const Vector3Base<T>& a) const;
     T Length() const;
@@ -75,6 +77,7 @@ public:
     static Vector3Base<T> Lerp(const Vector3Base<T>& from, const Vector3Base<T>& to, T amount);
     static Vector3Base<T> Cross(const Vector3Base<T>& a, const Vector3Base<T>& b);
     static Vector3Base<T> Transform(const Vector3Base<T>& a, const Quaternion& rotation);
+    static Vector3Base<T> Transform(const Vector3Base<T>& a, const MatrixBase<T, 4, 4>& matrix);
 
     static T Dot(const Vector3Base<T>& a, const Vector3Base<T>& b);
     static T Length(const Vector3Base<T>& a);
@@ -82,8 +85,12 @@ public:
     static T Distance(const Vector3Base<T>& a, const Vector3Base<T>& b);
     static T DistanceSquared(const Vector3Base<T>& a, const Vector3Base<T>& b);
 
+    static bool NearEqual(const Vector3Base<T>& a, const Vector3Base<T>& b);
+
     static bool IsNormalized(const Vector3Base<T>& a);
     static bool IsZero(const Vector3Base<T>& a);
+    static bool IsNaN(const Vector3Base<T>& a);
+    static bool IsInfinity(const Vector3Base<T>& a);
 
 public:
     /* Operators */
@@ -156,10 +163,10 @@ template<typename T>
 const Vector3Base<T> Vector3Base<T>::Right(1, 0, 0);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Forward(-1, 0, 1);
+const Vector3Base<T> Vector3Base<T>::Forward(0, 0, 1);
 
 template<typename T>
-const Vector3Base<T> Vector3Base<T>::Back(1, 0, -1);
+const Vector3Base<T> Vector3Base<T>::Back(0, 0, -1);
 
 template<typename T>
 const Vector3Base<T> Vector3Base<T>::One(1);
@@ -187,7 +194,12 @@ void Vector3Base<T>::Negate()
 template <typename T>
 void Vector3Base<T>::Normalize()
 {
-    T invLength = T(1) / Length();
+    T lenSqr = LengthSquared();
+
+    if (Math::IsZero(lenSqr))
+        return;
+
+    T invLength = T(1) / Math::Sqrt(lenSqr);
 
     x *= invLength;
     y *= invLength;
@@ -210,6 +222,18 @@ template <typename T>
 bool Vector3Base<T>::IsZero() const
 {
     return IsZero(*this);
+}
+
+template <typename T>
+bool Vector3Base<T>::IsNaN() const
+{
+    return isnan(x) || isnan(y) || isnan(z);
+}
+
+template <typename T>
+bool Vector3Base<T>::IsInfinity() const
+{
+    return isinf(x) || isinf(y) || isinf(z);
 }
 
 template <typename T>
@@ -296,6 +320,15 @@ Vector3Base<T> Vector3Base<T>::Transform(const Vector3Base<T>& a, const Quaterni
 }
 
 template <typename T>
+Vector3Base<T> Vector3Base<T>::Transform(const Vector3Base<T>& a, const MatrixBase<T, 4, 4>& matrix)
+{
+    return Vector3Base<T>(
+        (a.x * matrix.m11) + (a.y * matrix.m21) + (a.z * matrix.m31) + matrix.m41,
+        (a.x * matrix.m12) + (a.y * matrix.m22) + (a.z * matrix.m32) + matrix.m42,
+        (a.x * matrix.m13) + (a.y * matrix.m23) + (a.z * matrix.m33) + matrix.m43);
+}
+
+template <typename T>
 T Vector3Base<T>::Dot(const Vector3Base<T>& a, const Vector3Base<T>& b)
 {
     return a.Dot(b);
@@ -326,6 +359,12 @@ T Vector3Base<T>::DistanceSquared(const Vector3Base<T>& a, const Vector3Base<T>&
 }
 
 template <typename T>
+bool Vector3Base<T>::NearEqual(const Vector3Base<T>& a, const Vector3Base<T>& b)
+{
+    return Math::NearEqual(a.x, b.x) && Math::NearEqual(a.y, b.y) && Math::NearEqual(a.z, b.z);
+}
+
+template <typename T>
 bool Vector3Base<T>::IsNormalized(const Vector3Base<T>& a)
 {
     return Math::IsOne(a.LengthSquared());
@@ -335,6 +374,18 @@ template <typename T>
 bool Vector3Base<T>::IsZero(const Vector3Base<T>& a)
 {
     return a.x == 0 && a.y == 0 && a.z == 0;
+}
+
+template <typename T>
+bool Vector3Base<T>::IsNaN(const Vector3Base<T>& a)
+{
+    return a.IsNaN();
+}
+
+template <typename T>
+bool Vector3Base<T>::IsInfinity(const Vector3Base<T>& a)
+{
+    return a.IsInfinity();
 }
 
 template <typename T>
