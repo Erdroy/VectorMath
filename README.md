@@ -1,5 +1,4 @@
 # VectorMath
-[![Discord](https://discordapp.com/api/guilds/304571867203764233/widget.png)](https://discord.alwaystoolate.com) <br>
 SharpDX Inspired C++ vector math library (scalar only).
 
 **Status:** Production Ready
