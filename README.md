@@ -15,7 +15,7 @@ m_view = Matrix::CreateLookAt(m_position, m_lookAt, m_up);
 m_projection = Matrix::CreatePerspective(Math::DegreeToRadian * m_fov, Display::GetAspectRatio(), m_nearPlane, m_farPlane);
 m_viewProjection = m_view * m_projection;
 // ...
-auto transformed = Vector3::Transform(m_viewProjection);
+auto transformed = Vector3::Transform(somePoint, m_viewProjection);
 ```
 
 Vector2/3/4 functionality
