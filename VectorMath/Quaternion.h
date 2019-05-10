@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef QUATERNION_H
-#define QUATERNION_H
-
 #include "VectorBase.h"
 #include "MatrixBase.h"
 
@@ -477,5 +474,3 @@ inline Quaternion Quaternion::operator*(const float other) const
     result.w *= other;
     return result;
 }
-
-#endif // QUATERNION_H

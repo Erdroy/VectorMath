@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef VECTOR4_H
-#define VECTOR4_H
-
 #include "VectorBase.h"
 
 template<typename T>
@@ -652,6 +649,3 @@ Vector4Base<T>& Vector4Base<T>::operator=(const Vector4Base<T>& other)
     components[3] = other[3];
     return *this;
 }
-
-
-#endif // VECTOR4_H

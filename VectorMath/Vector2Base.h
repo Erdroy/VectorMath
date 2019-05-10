@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef VECTOR2_H
-#define VECTOR2_H
-
 #include "VectorBase.h"
 #include "Quaternion.h"
 
@@ -564,5 +561,3 @@ Vector2Base<T>& Vector2Base<T>::operator=(const Vector2Base<T>& other)
     components[1] = other[1];
     return *this;
 }
-
-#endif // VECTOR2_H

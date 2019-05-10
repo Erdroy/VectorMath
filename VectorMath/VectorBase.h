@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef VECTORBASE_H
-#define VECTORBASE_H
-
 #include "Config.h"
 #include "Math.h"
 
@@ -169,5 +166,3 @@ public:
     /* Static constant members */
     static const size_t Dimension = S;
 };
-
-#endif // VECTORBASE_H

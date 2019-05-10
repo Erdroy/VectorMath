@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef MATH_H
-#define MATH_H
-
 #include "Config.h"
 
 class Math
@@ -209,5 +206,3 @@ public:
     static const float DegreeToRadian;
     static const float RadianToDegree;
 };
-
-#endif // MATH_H

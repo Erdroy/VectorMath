@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef MATRIX4X4BASE_H
-#define MATRIX4X4BASE_H
-
 #include "MatrixBase.h"
 #include "Vector3Base.h"
 
@@ -825,5 +822,3 @@ void Matrix4x4Base<T>::Transpose()
     m43 = temp.m34;
     m44 = temp.m44;
 }
-
-#endif // MATRIX4X4BASE_H

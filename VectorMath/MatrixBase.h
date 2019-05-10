@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef MATRIXBASE_H
-#define MATRIXBASE_H
-
 #include "Config.h"
 #include "Math.h"
 
@@ -194,5 +191,3 @@ public:
     static const size_t Rows = R;
     static const size_t Size = C * R;
 };
-
-#endif // MATRIXBASE_H

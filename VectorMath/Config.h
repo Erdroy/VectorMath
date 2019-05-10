@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef CONFIG_H
-#define CONFIG_H
-
 #include <type_traits>
 #include <iterator>
 #include <complex>
@@ -16,5 +13,3 @@
 #ifndef USE_UPPERCASE_COMPONENTS
 #define USE_UPPERCASE_COMPONENTS        DISABLE
 #endif
-
-#endif // CONFIG_H

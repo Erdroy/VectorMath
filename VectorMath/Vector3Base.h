@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef VECTOR3_H
-#define VECTOR3_H
-
 #include "VectorBase.h"
 #include "Quaternion.h"
 
@@ -619,6 +616,3 @@ Vector3Base<T>& Vector3Base<T>::operator=(const Vector3Base<T>& other)
     components[2] = other[2];
     return *this;
 }
-
-
-#endif // VECTOR3_H
