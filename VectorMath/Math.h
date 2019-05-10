@@ -135,6 +135,26 @@ public:
         return IsZero(value - 1);
     }
 
+    static int FloorToInt(const float value)
+    {
+        return static_cast<int>(floorf(value));
+    }
+
+    static int FloorToInt(const double value)
+    {
+        return static_cast<int>(floorf(static_cast<float>(value)));
+    }
+
+    static int CeilToInt(const float value)
+    {
+        return static_cast<int>(ceilf(value));
+    }
+
+    static int CeilToInt(const double value)
+    {
+        return static_cast<int>(ceilf(static_cast<float>(value)));
+    }
+
     static bool IsZero(const int a)
     {
         return a == 0;
