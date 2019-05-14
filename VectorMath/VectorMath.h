@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef VECTORMATH_H
-#define VECTORMATH_H
-
 #include "Config.h"
 #include "Math.h"
 #include "Vector2Base.h"
@@ -12,6 +9,9 @@
 #include "Vector4Base.h"
 #include "Quaternion.h"
 #include "Matrix4x4Base.h"
+#include "PlaneBase.h"
+#include "BoundingBoxBase.h"
+#include "BoundingFrustumBase.h"
 
 using Vector2f = Vector2Base<float>;
 using Vector3f = Vector3Base<float>;
@@ -26,14 +26,28 @@ using Matrix4x4d = Matrix4x4Base<double>;
 
 using Matrix = Matrix4x4f; // Maybe we want to also make the matrix double precision?
 
+using PlaneF = PlaneBase<float>;
+using BoundingBoxF = BoundingBoxBase<float>;
+using BoundingFrustumF = BoundingFrustumBase<float>;
+
+using PlaneD = PlaneBase<double>;
+using BoundingBoxD = BoundingBoxBase<double>;
+using BoundingFrustumD = BoundingFrustumBase<double>;
+
 #ifndef MATH_DEFAULT_DOUBLE_PRECISION
 using Vector2 = Vector2f;
 using Vector3 = Vector3f;
 using Vector4 = Vector4f;
+
+using Plane = PlaneF;
+using BoundingBox = BoundingBoxF;
+using BoundingFrustum = BoundingFrustumF;
 #else
 using Vector2 = Vector2d;
 using Vector3 = Vector3d;
 using Vector4 = Vector4d;
-#endif
 
-#endif // VECTORMATH_H
+using Plane = PlaneD;
+using BoundingBox = BoundingBoxD;
+using BoundingFrustum = BoundingFrustumD;
+#endif

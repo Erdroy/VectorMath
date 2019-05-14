@@ -139,16 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoundingBoxBase.h" />
+    <ClInclude Include="BoundingFrustumBase.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix4x4Base.h" />
     <ClInclude Include="MatrixBase.h" />
+    <ClInclude Include="PlaneBase.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Vector2Base.h" />
     <ClInclude Include="Vector3Base.h" />
     <ClInclude Include="Vector4Base.h" />
     <ClInclude Include="VectorBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Math.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
