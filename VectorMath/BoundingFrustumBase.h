@@ -6,6 +6,7 @@
 #include "Vector3Base.h"
 #include "PlaneBase.h"
 #include "BoundingBoxBase.h"
+#include "BoundingSphereBase.h"
 
 template<typename T>
 struct BoundingFrustumBase
@@ -96,17 +97,30 @@ public:
         return true;
     }
 
-    bool ContainsSphere(const Vector3Base<T>& position, const float radius)
+    bool ContainsSphere(const BoundingSphereBase<T>& sphere)
     {
         for (auto i = 0; i < 6; i++)
         {
             auto plane = GetPlane(i);
 
-            if (plane.Dot(position) + radius < 0.0f)
+            if (plane.Dot(sphere.center) + sphere.radius < 0.0f)
                 return false;
         }
 
         return true;
+    }
+
+    bool IntersectsSphere(const BoundingSphereBase<T>& sphere)
+    {
+        for (auto i = 0; i < 6; i++)
+        {
+            auto plane = GetPlane(i);
+
+            if (plane.Dot(sphere.center) + sphere.radius >= 0.0f)
+                return true;
+        }
+
+        return false;
     }
 
     void SetPlanes(const MatrixBase<T, 4, 4>& matrix)

@@ -12,6 +12,7 @@
 #include "PlaneBase.h"
 #include "BoundingBoxBase.h"
 #include "BoundingFrustumBase.h"
+#include "ColorBase.h"
 
 using Vector2f = Vector2Base<float>;
 using Vector3f = Vector3Base<float>;
@@ -29,10 +30,12 @@ using Matrix = Matrix4x4f; // Maybe we want to also make the matrix double preci
 using PlaneF = PlaneBase<float>;
 using BoundingBoxF = BoundingBoxBase<float>;
 using BoundingFrustumF = BoundingFrustumBase<float>;
+using BoundingSphereF = BoundingSphereBase<float>;
 
 using PlaneD = PlaneBase<double>;
 using BoundingBoxD = BoundingBoxBase<double>;
 using BoundingFrustumD = BoundingFrustumBase<double>;
+using BoundingSphereD = BoundingSphereBase<double>;
 
 #ifndef MATH_DEFAULT_DOUBLE_PRECISION
 using Vector2 = Vector2f;
@@ -42,6 +45,7 @@ using Vector4 = Vector4f;
 using Plane = PlaneF;
 using BoundingBox = BoundingBoxF;
 using BoundingFrustum = BoundingFrustumF;
+using BoundingSphere = BoundingSphereF;
 #else
 using Vector2 = Vector2d;
 using Vector3 = Vector3d;
@@ -50,4 +54,9 @@ using Vector4 = Vector4d;
 using Plane = PlaneD;
 using BoundingBox = BoundingBoxD;
 using BoundingFrustum = BoundingFrustumD;
+using BoundingSphere = BoundingSphereD;
 #endif
+
+using Color = ColorBase<float>;
+using Color4 = Color;
+using Color32 = Color;
