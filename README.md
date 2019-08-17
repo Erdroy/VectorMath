@@ -58,7 +58,8 @@ Currently I don't have enough separete time to push into this library.
 But still, it will get updates pulled from my projects, when I'm done with some new features.
 
 What I would like to add/improve:
-- Full 'selectors' implementation (v1 = v.xxy() etc.)
+- Full 'accessors' implementation (v1 = v.xxy() etc.)
+- Disable explicit floating-point functions for integers
 - SIMD Support
 - Documentation
 - More functions!
