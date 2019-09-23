@@ -31,7 +31,7 @@ public:
     /// <summary>
     /// Minimum X coordinate of this BoundingBox
     /// </summary>
-    float Left() const
+    T Left() const
     {
         return center.x - (size.x / 2);
     }
@@ -39,7 +39,7 @@ public:
     /// <summary>
     /// Maximum X coordinate of this BoundingBox
     /// </summary>
-    float Right() const
+    T Right() const
     {
         return center.x + (size.x / 2);
     }
@@ -47,7 +47,7 @@ public:
     /// <summary>
     /// Minimum Y coordinate of this BoundingBox
     /// </summary>
-    float Bottom() const
+    T Bottom() const
     {
         return center.y - (size.y / 2);
     }
@@ -55,7 +55,7 @@ public:
     /// <summary>
     /// Maximum Y coordinate of this BoundingBox
     /// </summary>
-    float Top() const
+    T Top() const
     {
         return center.y + (size.y / 2);
     }
@@ -63,7 +63,7 @@ public:
     /// <summary>
     /// Minimum Z coordinate of this BoundingBox
     /// </summary>
-    float Back() const
+    T Back() const
     {
         return center.z - (size.z / 2);
     }
@@ -71,7 +71,7 @@ public:
     /// <summary>
     /// Maximum Z coordinate of this BoundingBox
     /// </summary>
-    float Front() const
+    T Front() const
     {
         return center.z + (size.z / 2);
     }
