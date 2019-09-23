@@ -129,17 +129,6 @@ public:
     Vector4Base<T>& operator=(const Vector4Base<T>& other);
 
 public:
-    /* Combined Accessors */
-    VectorBase<T, 3> xxx() { return VectorBase<T, 3>(components[0], components[0], components[0]); }
-    VectorBase<T, 3> yyy() { return VectorBase<T, 3>(components[1], components[1], components[1]); }
-    VectorBase<T, 3> zzz() { return VectorBase<T, 3>(components[2], components[2], components[2]); }
-
-    VectorBase<T, 4> xxxx() { return VectorBase<T, 3>(components[0], components[0], components[0], components[0]); }
-    VectorBase<T, 4> yyyy() { return VectorBase<T, 3>(components[1], components[1], components[1], components[1]); }
-    VectorBase<T, 4> zzzy() { return VectorBase<T, 3>(components[2], components[2], components[2], components[2]); }
-    VectorBase<T, 4> wwww() { return VectorBase<T, 3>(components[3], components[3], components[3], components[3]); }
-
-public:
     /* Constant static members */
     static const Vector4Base<T> Up;
     static const Vector4Base<T> Down;

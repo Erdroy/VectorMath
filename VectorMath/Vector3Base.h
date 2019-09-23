@@ -125,12 +125,6 @@ public:
     Vector3Base<T>& operator=(const Vector3Base<T>& other);
 
 public:
-    /* Combined Accessors */
-    VectorBase<T, 3> xxx() { return VectorBase<T, 3>(components[0], components[0], components[0]); }
-    VectorBase<T, 3> yyy() { return VectorBase<T, 3>(components[1], components[1], components[1]); }
-    VectorBase<T, 3> zzz() { return VectorBase<T, 3>(components[2], components[2], components[2]); }
-
-public:
     /* Constant static members */
     static const Vector3Base<T> Up;
     static const Vector3Base<T> Down;
