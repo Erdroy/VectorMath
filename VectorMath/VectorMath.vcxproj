@@ -141,6 +141,8 @@
   <ItemGroup>
     <ClInclude Include="BoundingBoxBase.h" />
     <ClInclude Include="BoundingFrustumBase.h" />
+    <ClInclude Include="BoundingSphereBase.h" />
+    <ClInclude Include="ColorBase.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix4x4Base.h" />
