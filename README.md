@@ -4,9 +4,9 @@ SharpDX Inspired C++ vector math library (scalar only).
 **Status:** Production Ready
 
 VectorMath was designed to be flexible, allows to define vectors using any integer/floating-point type.
+Just drag and drop source and header files into your project! That's it.
 
-Sample Code:
-
+## Sample code
 View Projection matrix calculation
 ```C++
 m_lookAt = m_position + m_forward;
@@ -48,10 +48,9 @@ using Vector2i = Vector2Base<int>;
 using Vector3i = Vector3Base<int>;
 using Vector4i = Vector4Base<int>;
 ```
-There is already some ready-to-use types defined in the [VectorMath.h](https://github.com/Erdroy/VectorMath/blob/master/VectorMath/VectorMath.h) file.
+Already there are some ready-to-use types defined in the [VectorMath.h](https://github.com/Erdroy/VectorMath/blob/master/VectorMath/VectorMath.h) file.
 
 By default UPPERCASE component naming is enabled, look: [Config.h](https://github.com/Erdroy/VectorMath/blob/master/VectorMath/Config.h).
-You should use the source code, instead compiling it.
 
 ## Roadmap
 Currently I don't have enough separete time to push into this library.
