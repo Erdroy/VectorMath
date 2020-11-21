@@ -1,4 +1,4 @@
-// VectorMath (c) 2018-2019 Damian 'Erdroy' Korczowski
+// VectorMath (c) 2018-2020 Damian 'Erdroy' Korczowski
 
 #include "Math.h"
 #include "Vector2Base.h"
