@@ -48,9 +48,9 @@ using Vector2i = Vector2Base<int>;
 using Vector3i = Vector3Base<int>;
 using Vector4i = Vector4Base<int>;
 ```
-Already there are some ready-to-use types defined in the [VectorMath.h](https://github.com/Erdroy/VectorMath/blob/master/VectorMath/VectorMath.h) file.
+Already there are some ready-to-use types defined in the [VectorMath.h](https://github.com/Erdroy/VectorMath/blob/master/Source/VectorMath.h) file.
 
-By default UPPERCASE component naming is enabled, look: [Config.h](https://github.com/Erdroy/VectorMath/blob/master/VectorMath/Config.h).
+By default UPPERCASE component naming is enabled, look: [Config.h](https://github.com/Erdroy/VectorMath/blob/master/Source/Config.h).
 
 ## Roadmap
 Currently I don't have enough separete time to push into this library.
