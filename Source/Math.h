@@ -1,4 +1,4 @@
-// VectorMath (c) 2018-2020 Damian 'Erdroy' Korczowski
+// VectorMath (c) 2018-2022 Damian 'Erdroy' Korczowski
 
 #pragma once
 
