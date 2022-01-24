@@ -53,15 +53,11 @@ Already there are some ready-to-use types defined in the [VectorMath.h](https://
 By default UPPERCASE component naming is enabled, look: [Config.h](https://github.com/Erdroy/VectorMath/blob/master/Source/Config.h).
 
 ## Roadmap
-Currently I don't have enough separete time to push into this library.
-But still, it will get updates pulled from my projects, when I'm done with some new features.
-
-What I would like to add/improve:
 - Disable explicit floating-point functions for integers
+- Get rid of STD
 - SIMD Support
 - Documentation
 - More functions!
-- Premake project setup (or CMake)
 
 ## Contributions
 I do accept PR. Feel free to contribute.
